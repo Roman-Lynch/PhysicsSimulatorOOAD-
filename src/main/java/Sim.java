@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.util.List;
 import java.util.List;
 import java.util.ArrayList;
@@ -15,7 +16,7 @@ public class Sim {
             return new Builder();
         }
 
-        public Builder createAndAddMars(double height, double width, double wallElasticity) {
+        public Builder createAndAddMars(int height, int width, double wallElasticity) {
             if (height <= 0){
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
@@ -28,7 +29,7 @@ public class Sim {
             return this;
         }
 
-        public Builder createAndAddEarth(double height, double width, double wallElasticity) {
+        public Builder createAndAddEarth(int height, int width, double wallElasticity) {
             if (height <= 0){
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
@@ -41,7 +42,7 @@ public class Sim {
             return this;
         }
 
-        public Builder createAndAddBlackHole(double height, double width, double wallElasticity) {
+        public Builder createAndAddBlackHole(int height, int width, double wallElasticity) {
             if (height <= 0){
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
@@ -54,7 +55,7 @@ public class Sim {
             return this;
         }
 
-        public Builder createAndAddJupiter(double height, double width, double wallElasticity) {
+        public Builder createAndAddJupiter(int height, int width, double wallElasticity) {
             if (height <= 0){
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
@@ -67,7 +68,7 @@ public class Sim {
             return this;
         }
 
-        public Builder createAndAddMercury(double height, double width, double wallElasticity) {
+        public Builder createAndAddMercury(int height, int width, double wallElasticity) {
             if (height <= 0){
                 throw new IllegalArgumentException("Height must be greater than 0");
             }

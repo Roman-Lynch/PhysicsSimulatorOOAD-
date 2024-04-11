@@ -32,5 +32,15 @@ public class PhysicsTest
 //            .addObject(obj)
 //            .setRunTime(5)
 //            .run();
+
+    @Test
+    public void TestLogging(){
+        int x = 5;
+        int y = 5;
+
+        Sim sim = new Sim();
+
+        sim.display(x,y);
+    }
 }
 

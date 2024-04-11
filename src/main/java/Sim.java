@@ -1,27 +1,47 @@
 import java.awt.*;
 import java.util.List;
-import java.util.List;
 import java.util.ArrayList;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Sim {
-    public static class Builder{
+
+    private static final Logger logger = LoggerFactory.getLogger(Sim.class);
+
+    public static Builder Builder(){
+        return new Builder();
+    }
+    public void display(int x, int y){
+        for(int i = 0; i < y; i++) {
+            StringBuilder row = new StringBuilder();
+            for (int j = 0; j < x; j++) {
+                row.append("+ ");
+            }
+            logger.info(row.toString());
+        }
+        }
+
+
+
+    public static class Builder {
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
         private boolean ElasticCollisions = true;
         private List<Object> objectList = new ArrayList<>();
         private Environment env;
+
         public static Builder newBuilder() {
             return new Builder();
         }
 
+        private int runTime;
+
         public Builder createAndAddMars(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -30,11 +50,11 @@ public class Sim {
         }
 
         public Builder createAndAddEarth(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -43,11 +63,11 @@ public class Sim {
         }
 
         public Builder createAndAddBlackHole(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -56,11 +76,11 @@ public class Sim {
         }
 
         public Builder createAndAddJupiter(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -69,11 +89,11 @@ public class Sim {
         }
 
         public Builder createAndAddMercury(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -82,11 +102,11 @@ public class Sim {
         }
 
         public Builder createAndAddMoon(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -95,11 +115,11 @@ public class Sim {
         }
 
         public Builder createAndAddNeptune(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -108,11 +128,11 @@ public class Sim {
         }
 
         public Builder createAndAddSaturn(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -121,11 +141,11 @@ public class Sim {
         }
 
         public Builder createAndAddSun(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -134,11 +154,11 @@ public class Sim {
         }
 
         public Builder createAndAddUranus(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -147,11 +167,11 @@ public class Sim {
         }
 
         public Builder createAndAddVenus(int height, int width, double wallElasticity) {
-            if (height <= 0){
+            if (height <= 0) {
                 throw new IllegalArgumentException("Height must be greater than 0");
             }
 
-            if (width <= 0){
+            if (width <= 0) {
                 throw new IllegalArgumentException("Width must be greater than 0");
             }
 
@@ -160,11 +180,11 @@ public class Sim {
         }
 
         public Builder addObject(Object obj, int y_cord, int x_cord) {
-            if (y_cord > env.getHeight() || y_cord < 0){
+            if (y_cord > env.getHeight() || y_cord < 0) {
                 throw new IllegalArgumentException("y_cord must be between 0 and the specified height boundary");
             }
 
-            if (x_cord > env.getWidth() || x_cord < 0){
+            if (x_cord > env.getWidth() || x_cord < 0) {
                 throw new IllegalArgumentException("x_cord must be between 0 and the specified width boundary");
             }
 
@@ -172,5 +192,15 @@ public class Sim {
             objectList.add(obj);
             return this;
         }
+
+        public Builder setRuntime(int desiredRunTime) {
+            runTime = desiredRunTime;
+            return this;
+        }
+
+        public Sim run() {
+            return sim;
+        }
+
     }
 }

@@ -26,8 +26,7 @@ public class Sim {
     public static class Builder {
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
-        private boolean ElasticCollisions = true;
-        private List<Object> objectList = new ArrayList<>();
+        private boolean elasticCollisions = true;
         private Environment env;
 
         public static Builder newBuilder() {
@@ -179,7 +178,7 @@ public class Sim {
             return this;
         }
 
-        public Builder addObject(Object obj, int y_cord, int x_cord) {
+        public Builder addObjects(Object obj, int y_cord, int x_cord) {
             if (y_cord > env.getHeight() || y_cord < 0) {
                 throw new IllegalArgumentException("y_cord must be between 0 and the specified height boundary");
             }
@@ -189,7 +188,7 @@ public class Sim {
             }
 
             obj.setLocation(new Point(x_cord, y_cord));
-            objectList.add(obj);
+            env.addObject(obj);
             return this;
         }
 

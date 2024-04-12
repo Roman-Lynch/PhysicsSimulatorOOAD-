@@ -11,16 +11,23 @@ public class Sim {
     public static Builder Builder(){
         return new Builder();
     }
-    public void display(int x, int y){
-        for(int i = 0; i < y; i++) {
-            StringBuilder row = new StringBuilder();
-            for (int j = 0; j < x; j++) {
-                row.append("+ ");
-            }
-            logger.info(row.toString());
-        }
-        }
-
+//    public void display(Environment env, double x, double y){
+//        for(int i = 0; i < y; i++) {
+//            StringBuilder row = new StringBuilder();
+//            for (int j = 0; j < x; j++) {
+//                Point currentPoint = new Point(j, i);
+//                if (env.getObjects().e.contains(currentPoint)) {
+//                    row.append("*");
+//                } else {
+//                    row.append("+");
+//                }
+//            }
+//            logger.info(row.toString());
+//        }
+//    }
+    public static Builder newBuilder() {
+        return new Builder();
+    }
 
 
     public static class Builder {
@@ -29,9 +36,6 @@ public class Sim {
         private boolean elasticCollisions = true;
         private Environment env;
 
-        public static Builder newBuilder() {
-            return new Builder();
-        }
 
         private int runTime;
 
@@ -198,6 +202,19 @@ public class Sim {
         }
 
         public Sim run() {
+
+            double mass1 = env.getObject(0).getMass();
+            double mass2 = env.getObject(1).getMass();
+            double vel1 = env.getObject(0).getVelocity();
+            double vel2 = env.getObject(1).getVelocity();
+
+            double v2 = (2*mass1*vel1+vel2*(mass2-mass1))/(mass2+mass1);
+            double v1 = (2*mass2*vel2+vel1*(mass1-mass2))/(mass2+mass1);
+
+            logger.info("Velocity of object 1: " + v1 + ". Velocity of object 2: " + v2);
+
+//            sim.display(env, env.getHeight(), env.getWidth());
+
             return sim;
         }
 

@@ -34,13 +34,50 @@ public class PhysicsTest
 //            .run();
 
     @Test
+    public void TestSim()
+    {
+        int height = 5;
+        int width = 5;
+        double velocity1 = 5; // m/s
+        double mass1 = 1; // kg
+        Point location1 = new Point(0, 0); // meters
+        double height2 = 5;
+        double width2 = 5;
+        double velocity2 = -3; // m/s
+        double mass2 = 2; // kg
+        Point location2 = new Point(5, 0);
+
+        Object objOne = Object.newBuilder()
+                .shape(1,1)
+                .mass(mass1)
+                .velocity(velocity1)
+                .direction(Direction.RIGHT)
+                .create();
+
+        Object objTwo = Object.newBuilder()
+                .shape(1, 1)
+                .mass(mass2)
+                .velocity(velocity2)
+                .direction(Direction.LEFT)
+                .create();
+
+        Sim runSim = Sim.newBuilder()
+                .createAndAddMars(height, width,1)
+                .addObjects(objOne, 0,0)
+                .addObjects(objTwo,0,5)
+                .run();
+    }
+
+
+    @Test
     public void TestLogging(){
         int x = 5;
         int y = 5;
 
         Sim sim = new Sim();
+        Environment env = new Environment(3,4,3,1);
 
-        sim.display(x,y);
+//        sim.display(env, x,y);
     }
 }
 

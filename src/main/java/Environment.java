@@ -6,7 +6,7 @@ public class Environment {
     protected double height;
     protected double width;
     protected double wallElasticity;
-    private List<Object> objectList;
+    private List<Object> objectList = new ArrayList<>();
 
     public Environment(double gravity, int height, int width, double wallElasticity)
     {
@@ -23,6 +23,10 @@ public class Environment {
 
     public List<Object> getObjects() {
         return objectList;
+    }
+
+    public Object getObject(int index) {
+        return objectList.get(index);
     }
 
     public void addObject(Object obj) {

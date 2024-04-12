@@ -7,9 +7,14 @@ import org.slf4j.LoggerFactory;
 public class Sim {
 
     private static final Logger logger = LoggerFactory.getLogger(Sim.class);
+    private boolean collisionDetect = false;
 
     public static Builder Builder(){
         return new Builder();
+    }
+
+    public boolean collisionDetected(){
+        return collisionDetect;
     }
 
     public void display(Environment env, double x, double y){
@@ -50,6 +55,8 @@ public class Sim {
     public static class Builder {
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
+
+
         private boolean elasticCollisions = true;
         private Environment env;
         private int timeSteps;
@@ -238,7 +245,7 @@ public class Sim {
 
                                 double v2f = ( ((mass1-mass2)/(mass1+mass2)) * vel1) + (( (2*mass2)/(mass1+ mass2) ) * vel2);
                                 logger.info("A collision has occurred!");
-
+                                sim.collisionDetect = true;
 
                                 env.getObject(i).setVelocity(v1f);
                                 env.getObject(j).setVelocity(v2f);

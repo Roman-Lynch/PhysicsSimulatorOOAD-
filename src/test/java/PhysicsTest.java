@@ -68,6 +68,7 @@ public class PhysicsTest
                 .setRuntime(10)
                 .run();
 
+        assert(runSim.collisionDetected() == true);
     }
 
 
@@ -79,7 +80,7 @@ public class PhysicsTest
         Sim sim = new Sim();
         Environment env = new Environment(3,4,3,1);
 
-//        sim.display(env, x,y);
+        sim.display(env, x,y);
     }
 }
 

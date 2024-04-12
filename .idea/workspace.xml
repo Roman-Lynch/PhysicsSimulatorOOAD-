@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d4532c2-df1d-442f-a336-0609af10da5c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Sim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sim.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" afterDir="false" />
     </list>
@@ -61,7 +60,7 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected="Gradle.PhysicsTest.TestSim">
+  <component name="RunManager" selected="Gradle.PhysicsTest.TestLogging">
     <configuration name="PhysicsTest.TestLogging" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -112,8 +111,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PhysicsTest.TestSim" />
         <item itemvalue="Gradle.PhysicsTest.TestLogging" />
+        <item itemvalue="Gradle.PhysicsTest.TestSim" />
       </list>
     </recent_temporary>
   </component>

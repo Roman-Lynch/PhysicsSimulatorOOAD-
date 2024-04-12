@@ -20,7 +20,7 @@ public class Sim {
                 for (int k = 0; k < env.getObjects().size(); k++) {
                     if (env.getObject(k).getLocation().getX() == j && env.getObject(k).getLocation().getY() == i) {
                         found = true;
-                        break; // Once an object is found, no need to check further, break out of the loop
+                        break;
                     }
                 }
                 if (found) {
@@ -222,6 +222,7 @@ public class Sim {
             logger.info("Running");
 
             for (int t = 0; t <= timeSteps; t++) {
+                logger.info("TimeStep: " + t);
                 if(env.getObjects().size() > 1) {
 
                     for (int i = 0; i < env.getObjects().size(); i++) {
@@ -236,8 +237,6 @@ public class Sim {
                                 double v1f = (( (2*mass1)/(mass1+ mass2) ) * vel1) - ( ((mass1-mass2)/(mass1+mass2)) * vel2);
 
                                 double v2f = ( ((mass1-mass2)/(mass1+mass2)) * vel1) + (( (2*mass2)/(mass1+ mass2) ) * vel2);
-                                logger.info("Object 1 has velocity: " + vel1);
-                                logger.info("Object 2 has velocity: " + vel2);
                                 logger.info("A collision has occurred!");
 
 
@@ -248,16 +247,15 @@ public class Sim {
 
                         }
                     }
-                    sim.display(env, env.getHeight(), env.getWidth());
+
                     for (int i = 0; i < env.getObjects().size(); i++) {
                         logger.info("Object " + (i+1) + " has velocity: " + env.getObject(i).getVelocity());
                     }
+                    sim.display(env, env.getHeight(), env.getWidth());
                 }
                 for(int i = 0; i < env.getObjects().size(); i++) {
                     env.getObject(i).getLocation().x += env.getObject(i).getVelocity();
                 }
-
-                logger.info("TimeStep: " + t);
 
             }
 

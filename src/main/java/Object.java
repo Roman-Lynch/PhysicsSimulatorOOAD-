@@ -36,6 +36,10 @@ public class Object {
         return velocity;
     }
 
+    public void setVelocity(double newVel) {
+        velocity = newVel;
+    }
+
     public double getMass() {
         return mass;
     }

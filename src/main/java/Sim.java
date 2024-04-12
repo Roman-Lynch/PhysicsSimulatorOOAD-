@@ -11,20 +11,37 @@ public class Sim {
     public static Builder Builder(){
         return new Builder();
     }
-//    public void display(Environment env, double x, double y){
-//        for(int i = 0; i < y; i++) {
-//            StringBuilder row = new StringBuilder();
-//            for (int j = 0; j < x; j++) {
-//                Point currentPoint = new Point(j, i);
-//                if (env.getObjects().e.contains(currentPoint)) {
-//                    row.append("*");
-//                } else {
-//                    row.append("+");
-//                }
-//            }
-//            logger.info(row.toString());
-//        }
-//    }
+
+    public void display(Environment env, double x, double y){
+        for(int i = 0; i < y; i++) {
+            StringBuilder row = new StringBuilder();
+            for (int j = 0; j < x; j++) {
+                boolean found = false;
+                for (int k = 0; k < env.getObjects().size(); k++) {
+                    if (env.getObject(k).getLocation().getX() == j && env.getObject(k).getLocation().getY() == i) {
+                        found = true;
+                        break; // Once an object is found, no need to check further, break out of the loop
+                    }
+                }
+                if (found) {
+                    row.append(" O ");
+                } else {
+                    row.append(" + ");
+                }
+            }
+            logger.info(row.toString());
+        }
+    }
+
+    boolean checkOverlap(Object obj1, Object obj2) {
+        double startX1 = obj1.getLocation().getX();
+        double endX1 = startX1 + obj1.getVelocity();
+
+        double startX2 = obj2.getLocation().getX();
+        double endX2 = startX2 + obj2.getVelocity();
+
+        return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
+    }
     public static Builder newBuilder() {
         return new Builder();
     }
@@ -35,9 +52,7 @@ public class Sim {
         private Sim sim = new Sim();
         private boolean elasticCollisions = true;
         private Environment env;
-
-
-        private int runTime;
+        private int timeSteps;
 
         public Builder createAndAddMars(int height, int width, double wallElasticity) {
             if (height <= 0) {
@@ -197,23 +212,55 @@ public class Sim {
         }
 
         public Builder setRuntime(int desiredRunTime) {
-            runTime = desiredRunTime;
+            timeSteps = desiredRunTime;
             return this;
         }
 
         public Sim run() {
 
-            double mass1 = env.getObject(0).getMass();
-            double mass2 = env.getObject(1).getMass();
-            double vel1 = env.getObject(0).getVelocity();
-            double vel2 = env.getObject(1).getVelocity();
 
-            double v2 = (2*mass1*vel1+vel2*(mass2-mass1))/(mass2+mass1);
-            double v1 = (2*mass2*vel2+vel1*(mass1-mass2))/(mass2+mass1);
+            logger.info("Running");
 
-            logger.info("Velocity of object 1: " + v1 + ". Velocity of object 2: " + v2);
+            for (int t = 0; t <= timeSteps; t++) {
+                if(env.getObjects().size() > 1) {
 
-//            sim.display(env, env.getHeight(), env.getWidth());
+                    for (int i = 0; i < env.getObjects().size(); i++) {
+                        for (int j = i + 1; j < env.getObjects().size(); j++) {
+
+                            if (sim.checkOverlap(env.getObject(i), env.getObject(j))) {
+                                double mass1 = env.getObject(i).getMass();
+                                double mass2 = env.getObject(j).getMass();
+                                double vel1 = env.getObject(i).getVelocity();
+                                double vel2 = env.getObject(j).getVelocity();
+
+                                double v1f = (( (2*mass1)/(mass1+ mass2) ) * vel1) - ( ((mass1-mass2)/(mass1+mass2)) * vel2);
+
+                                double v2f = ( ((mass1-mass2)/(mass1+mass2)) * vel1) + (( (2*mass2)/(mass1+ mass2) ) * vel2);
+                                logger.info("Object 1 has velocity: " + vel1);
+                                logger.info("Object 2 has velocity: " + vel2);
+                                logger.info("A collision has occurred!");
+
+
+                                env.getObject(i).setVelocity(v1f);
+                                env.getObject(j).setVelocity(v2f);
+
+                            }
+
+                        }
+                    }
+                    sim.display(env, env.getHeight(), env.getWidth());
+                    for (int i = 0; i < env.getObjects().size(); i++) {
+                        logger.info("Object " + (i+1) + " has velocity: " + env.getObject(i).getVelocity());
+                    }
+                }
+                for(int i = 0; i < env.getObjects().size(); i++) {
+                    env.getObject(i).getLocation().x += env.getObject(i).getVelocity();
+                }
+
+                logger.info("TimeStep: " + t);
+
+            }
+
 
             return sim;
         }

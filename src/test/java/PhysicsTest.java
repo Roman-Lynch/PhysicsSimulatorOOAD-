@@ -36,8 +36,8 @@ public class PhysicsTest
     @Test
     public void TestSim()
     {
-        int height = 5;
-        int width = 5;
+        int height = 20;
+        int width = 20;
         double velocity1 = 5; // m/s
         double mass1 = 1; // kg
         Point location1 = new Point(0, 0); // meters
@@ -64,7 +64,8 @@ public class PhysicsTest
         Sim runSim = Sim.newBuilder()
                 .createAndAddMars(height, width,1)
                 .addObjects(objOne, 0,0)
-                .addObjects(objTwo,0,5)
+                .addObjects(objTwo,0,19)
+                .setRuntime(10)
                 .run();
     }
 

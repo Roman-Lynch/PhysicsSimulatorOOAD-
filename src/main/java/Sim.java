@@ -8,6 +8,7 @@ import static java.lang.Math.pow;
 
 public class Sim {
 
+
     private static final Logger logger = LoggerFactory.getLogger(Sim.class);
     private boolean collisionDetect = false;
 
@@ -57,7 +58,7 @@ public class Sim {
 
 
         private boolean elasticCollisions = true;
-        private Environment env;
+        public Environment env;
         private int timeSteps;
 
         public Builder createAndAddMars(int height, int width, double wallElasticity) {

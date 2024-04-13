@@ -111,7 +111,8 @@ public class PhysicsTest
         System.out.println(finalY);
         System.out.println(correctY);
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestVenusGravity()
@@ -154,7 +155,8 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 8.87 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestUranusGravity()
@@ -197,7 +199,8 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 8.87 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestSunGravity()
@@ -240,7 +243,8 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 274 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestSaturnGravity()
@@ -256,8 +260,6 @@ public class PhysicsTest
         double velocity2 = -3; // m/s
         double mass2 = 2; // kg
         Point location2 = new Point(10, 0);
-
-        Saturn sat = new Saturn(9,10,0.5);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
@@ -285,7 +287,7 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 10.44 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false); //Note, overtime there may be slight errors due to rounding
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -329,7 +331,7 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 11.15 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false); //Note, overtime there may be slight errors due to rounding
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -373,7 +375,8 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 1.62 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestMercuryGravity()
@@ -418,7 +421,8 @@ public class PhysicsTest
         System.out.println(finalY);
         System.out.println(correctY);
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestJupiterGravity()
@@ -463,7 +467,8 @@ public class PhysicsTest
         System.out.println(finalY);
         System.out.println(correctY);
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
     @Test
     public void TestBlackHoleGravity()
@@ -506,7 +511,8 @@ public class PhysicsTest
         int correctY = (int) (0 - (0.5 * 99999999.99999 * pow(runtime, 2)));
         int finalY = objOne.getLocation().y;
 
-        assert(runSim.collisionDetected() == false);    }
+        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+    }
 
 
     @Test

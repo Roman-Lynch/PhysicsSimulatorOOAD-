@@ -4,24 +4,30 @@
 import java.awt.*;
 
 public class Object {
-    double height;
-    double width;
-    double velocity;
-    double mass;
-    Point location;
-    Direction direction;
+    private double height;
+    private double width;
+    private double velocity;
+    private double startVelocity;
+    private double mass;
+    private Point location;
+    private Point startLocation;
+    private Direction direction;
 
     public Object(double height, double width, double velocity, double mass, Point location, Direction direction) {
         this.height = height;
         this.width = width;
         this.velocity = velocity;
+        this.startVelocity = velocity;
         this.mass = mass;
         this.location = location;
+        this.startLocation = location;
         this.direction = direction;
     }
 
     public void setLocation(Point point) {
         location = point;
+        if (startLocation == null)
+            startLocation = location;
     }
 
     public double getHeight() {
@@ -36,9 +42,11 @@ public class Object {
         return velocity;
     }
 
-    public void setVelocity(double newVel) {
-        velocity = newVel;
+    public double getStartVelocity() {
+        return startVelocity;
     }
+
+    public void setVelocity(double newVel) { velocity = newVel; }
 
     public double getMass() {
         return mass;
@@ -47,6 +55,8 @@ public class Object {
     public Point getLocation() {
         return location;
     }
+
+    public Point getStartLocation() { return startLocation; }
 
     public Direction getDirection() {
         return direction;
@@ -61,12 +71,12 @@ public class Object {
     }
 
     public static class Builder {
-        double height;
-        double width;
-        double velocity;
-        double mass;
-        Point location;
-        Direction direction;
+        private double height;
+        private double width;
+        private double velocity;
+        private double mass;
+        private Point location;
+        private Direction direction;
 
         public Builder shape(double height, double width) {
             this.height = height;

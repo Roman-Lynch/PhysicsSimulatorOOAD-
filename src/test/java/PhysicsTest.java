@@ -26,15 +26,46 @@ public class PhysicsTest
         assertTrue(obj.isValidObj());
     }
 
-//    Sim runSim = Sim.newBuilder()
-//            .createAndAddMars(height, width)
-//            .addObject(obj)
-//            .addObject(obj)
-//            .setRunTime(5)
-//            .run();
-
     @Test
     public void TestSim()
+    {
+        int height = 20;
+        int width = 20;
+        double velocity1 = 5; // m/s
+        double mass1 = 1; // kg
+        Point location1 = new Point(0, 0); // meters
+        double height2 = 5;
+        double width2 = 5;
+        double velocity2 = -3; // m/s
+        double mass2 = 2; // kg
+        Point location2 = new Point(5, 0);
+
+        Object objOne = Object.newBuilder()
+                .shape(1,1)
+                .mass(mass1)
+                .velocity(velocity1)
+                .direction(Direction.RIGHT)
+                .create();
+
+        Object objTwo = Object.newBuilder()
+                .shape(1, 1)
+                .mass(mass2)
+                .velocity(velocity2)
+                .direction(Direction.LEFT)
+                .create();
+
+        Sim runSim = Sim.newBuilder()
+                .createAndAddMars(height, width,1)
+                .addObjects(objOne, 0,0)
+                .addObjects(objTwo,0,19)
+                .setRuntime(10)
+                .run();
+
+        assert(runSim.collisionDetected() == true);
+    }
+
+    @Test
+    public void TestMarsGravity()
     {
         int height = 20;
         int width = 20;

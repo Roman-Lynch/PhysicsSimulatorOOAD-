@@ -9,10 +9,6 @@ public class Sim {
     private static final Logger logger = LoggerFactory.getLogger(Sim.class);
     private boolean collisionDetect = false;
 
-    public static Builder Builder(){
-        return new Builder();
-    }
-
     public boolean collisionDetected(){
         return collisionDetect;
     }

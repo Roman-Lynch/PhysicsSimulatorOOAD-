@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4d4532c2-df1d-442f-a336-0609af10da5c" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/README.MD" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Object.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Object.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Environment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Sim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sim.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" afterDir="false" />
     </list>
@@ -23,6 +24,9 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
         <projects_view>
           <tree_state>
             <expand>
@@ -40,18 +44,29 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="ProjectId" id="2ew6hXQvwTgKlLi4wY9wEHq6Sbu" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.PhysicsTest.TestSaturnGravity.executor": "Run",
+    "Gradle.PhysicsTest.TestSim.executor": "Coverage",
+    "Gradle.PhysicsTest.executor": "Coverage",
+    "git-widget-placeholder": "master"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\PhysicsSimulatorOOAD-" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PhysicsTest.TestJupiterGravity">
+  <component name="RunManager" selected="Gradle.PhysicsTest">
     <configuration name="PhysicsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -73,6 +88,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="PhysicsTest.TestEarthGravity" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -96,6 +112,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="PhysicsTest.TestJupiterGravity" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -119,9 +136,10 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration name="PhysicsTest.TestLogging" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="PhysicsTest.TestSaturnGravity" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
@@ -134,7 +152,7 @@
           <list>
             <option value=":test" />
             <option value="--tests" />
-            <option value="&quot;PhysicsTest.TestLogging&quot;" />
+            <option value="&quot;PhysicsTest.TestSaturnGravity&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -142,6 +160,7 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <configuration name="PhysicsTest.TestSim" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -165,15 +184,16 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.PhysicsTest.TestJupiterGravity" />
         <item itemvalue="Gradle.PhysicsTest" />
+        <item itemvalue="Gradle.PhysicsTest.TestSaturnGravity" />
         <item itemvalue="Gradle.PhysicsTest.TestSim" />
+        <item itemvalue="Gradle.PhysicsTest.TestJupiterGravity" />
         <item itemvalue="Gradle.PhysicsTest.TestEarthGravity" />
-        <item itemvalue="Gradle.PhysicsTest.TestLogging" />
       </list>
     </recent_temporary>
   </component>
@@ -211,6 +231,7 @@
     </option>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/PhysicsSimulatorOOAD$PhysicsTest.ic" NAME="PhysicsTest Coverage Results" MODIFIED="1712972752977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/PhysicsSimulatorOOAD$PhysicsTest.ic" NAME="PhysicsTest Coverage Results" MODIFIED="1712983487801" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/PhysicsSimulatorOOAD$PhysicsTest_TestSim.ic" NAME="PhysicsTest.TestSim Coverage Results" MODIFIED="1712982917556" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

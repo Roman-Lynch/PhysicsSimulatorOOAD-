@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Environment {
-    protected double gravity;
+    public double gravity;
     protected double height;
     protected double width;
     protected double wallElasticity;

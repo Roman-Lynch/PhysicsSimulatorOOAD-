@@ -17,7 +17,7 @@ public class EnvironmentFactory {
         } else if ("Mercury".equals(EnvironmentType)) {
             return new Mercury(height, width, wallElasticity);
         } else if ("Uranus".equals(EnvironmentType)) {
-            return new Mercury(height, width, wallElasticity);
+            return new Uranus(height, width, wallElasticity);
         } else if ("BlackHole".equals(EnvironmentType)) {
             return new BlackHole(height, width, wallElasticity);
         } else if ("Sun".equals(EnvironmentType)) {

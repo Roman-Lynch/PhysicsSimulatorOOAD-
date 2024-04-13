@@ -273,16 +273,17 @@ public class Sim {
                 if (env.getObject(i).getDirection() == Direction.LEFT || env.getObject(i).getDirection() == Direction.RIGHT)
                 {
                     velocityX = env.getObject(i).getVelocity();
-                    posY = env.getObject(i).getStartLocation().y - timeStep * env.getGravity();
+                    posY = env.getObject(i).getStartLocation().y - (0.5 * env.getGravity() * pow(timeStep, 2));
                 }
                 else
                 {
-                    posY = env.getObject(i).getStartLocation().y + (env.getObject(i).getStartVelocity() * timeStep) - (0.5 * env.getGravity() * pow(timeStep, 2));
+                    posY = env.getObject(i).getStartLocation().y + (env.getObject(i).getVelocity() * timeStep ) - (0.5 * env.getGravity() * pow(timeStep, 2));
                 }
 
                 Point location = env.getObject(i).getLocation();
-                location.x += velocityX;
-                location.y = (int)posY;
+                env.getObject(i).setLocation(new Point((int)(location.x + velocityX), (int)posY));
+//                location.x += velocityX;
+//                location.y = (int)posY;
             }
         }
 

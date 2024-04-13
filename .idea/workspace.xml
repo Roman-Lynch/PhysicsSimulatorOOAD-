@@ -51,7 +51,7 @@
       <recent name="C:\Users\steve\IdeaProjects\PhysicsSimulatorOOAD-" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.PhysicsTest">
+  <component name="RunManager" selected="Gradle.PhysicsTest.TestJupiterGravity">
     <configuration name="PhysicsTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -66,6 +66,52 @@
             <option value=":test" />
             <option value="--tests" />
             <option value="&quot;PhysicsTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PhysicsTest.TestEarthGravity" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;PhysicsTest.TestEarthGravity&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="PhysicsTest.TestJupiterGravity" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;PhysicsTest.TestJupiterGravity&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -123,9 +169,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Gradle.PhysicsTest.TestJupiterGravity" />
         <item itemvalue="Gradle.PhysicsTest" />
-        <item itemvalue="Gradle.PhysicsTest.TestLogging" />
         <item itemvalue="Gradle.PhysicsTest.TestSim" />
+        <item itemvalue="Gradle.PhysicsTest.TestEarthGravity" />
+        <item itemvalue="Gradle.PhysicsTest.TestLogging" />
       </list>
     </recent_temporary>
   </component>

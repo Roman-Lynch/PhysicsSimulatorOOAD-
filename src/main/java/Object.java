@@ -1,5 +1,5 @@
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 
@@ -20,14 +20,14 @@ public class Object {
         this.startVelocity = velocity;
         this.mass = mass;
         this.location = location;
-        this.startLocation = location;
+        this.startLocation = new Point(location.x, location.y);
         this.direction = direction;
     }
 
     public void setLocation(Point point) {
         location = point;
         if (startLocation == null)
-            startLocation = location;
+            startLocation = new Point(location.x, location.y);
     }
 
     public double getHeight() {

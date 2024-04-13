@@ -16,7 +16,7 @@ public class Sim {
     }
 
     public void display(Environment env, int x, int y){
-        for(int i = -(y/2); i < (y/2); i++) {
+        for(int i = (y/2); i > -(y/2); i--) {
             StringBuilder row = new StringBuilder();
             for (int j = 0; j < x; j++) {
                 boolean found = false;
@@ -37,11 +37,11 @@ public class Sim {
     }
 
     boolean checkOverlap(Object obj1, Object obj2) {
-        double startX1 = obj1.getLocation().getX();
-        double endX1 = startX1 + obj1.getVelocity();
+        double startX1 = obj1.getStartLocation().x;
+        double endX1 = obj1.getLocation().x;
 
-        double startX2 = obj2.getLocation().getX();
-        double endX2 = startX2 + obj2.getVelocity();
+        double startX2 = obj2.getStartLocation().x;
+        double endX2 = obj2.getLocation().x;
 
         return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
     }
@@ -203,7 +203,10 @@ public class Sim {
             return this;
         }
 
-        public Builder addObjects(Object obj, int y_cord, int x_cord) {
+        public Builder addObjects(Object obj) {
+            int x_cord = obj.getLocation().x;
+            int y_cord = obj.getLocation().y;
+
             if (y_cord > env.getHeight() || y_cord < 0) {
                 throw new IllegalArgumentException("y_cord must be between 0 and the specified height boundary");
             }
@@ -220,9 +223,9 @@ public class Sim {
             logger.info("Running");
             for (int t = 0; t <= timeSteps; t++) {
                 logger.info("TimeStep: " + t);
+                moveObjects(t);
                 checkCollisions();
                 displayObjects();
-                moveObjects(t + 1);
             }
             return sim;
         }

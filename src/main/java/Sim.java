@@ -17,9 +17,9 @@ public class Sim {
     }
 
     public void display(Environment env, int x, int y){
-        for(int i = (y/2); i > -(y/2); i--) {
+        for(int i = (x/2); i > -(x/2); i--) {
             StringBuilder row = new StringBuilder();
-            for (int j = 0; j < x; j++) {
+            for (int j = 0; j < y; j++) {
                 boolean found = false;
                 for (int k = 0; k < env.getObjects().size(); k++) {
                     int objectX = (int) Math.round(env.getObject(k).getLocation().getX());

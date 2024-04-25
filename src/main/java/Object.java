@@ -16,10 +16,10 @@ public class Object {
         this.height = height;
         this.width = width;
         this.velocity = velocity;
-        this.startVelocity = new Velocity(velocity.getXVelocity(), velocity.getYVelocity());
+        this.startVelocity = new Velocity(velocity.getX(), velocity.getY());
         this.mass = mass;
         this.location = location;
-        this.startLocation = new Location(location.getXLocation(), location.getYLocation());
+        this.startLocation = new Location(location.getX(), location.getY());
     }
 
     public void setLocation(Location point) {

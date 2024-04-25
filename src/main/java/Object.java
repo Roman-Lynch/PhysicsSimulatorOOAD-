@@ -94,18 +94,13 @@ public class Object {
             return this;
         }
 
-        public Builder direction(Direction direction) {
-            this.direction = direction;
-            return this;
-        }
-
         public Builder location(Point location) {
             this.location = location;
             return this;
         }
 
         public Object create() {
-            Object obj = new Object(height, width, velocity, mass, location, direction);
+            Object obj = new Object(height, width, velocity, mass, location);
             return obj;
         }
     }

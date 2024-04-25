@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Environment {
-    public double gravity;
-    protected double height;
-    protected double width;
-    protected double wallElasticity;
+    private double gravity;
+    private double height;
+    private double width;
+    private double wallElasticity;
     private List<Object> objectList = new ArrayList<>();
 
     public Environment(double gravity, int height, int width, double wallElasticity)

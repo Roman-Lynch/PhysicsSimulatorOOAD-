@@ -42,8 +42,8 @@ public class Object {
         return startVelocity;
     }
 
-    public void setVelocity(double newX, double newY) {
-        velocity.setVelocity(newX, newY);
+    public void setVelocity(Velocity velocity) {
+        this.velocity = velocity;
     }
 
     public double getMass() {
@@ -79,7 +79,7 @@ public class Object {
         }
 
         public Builder velocity(Velocity velocity) {
-            this.velocity.setVelocity(velocity.getX(), velocity.getY());
+            this.velocity = velocity;
             return this;
         }
 

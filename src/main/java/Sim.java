@@ -38,11 +38,11 @@ public class Sim {
     }
 
     boolean checkOverlap(Object obj1, Object obj2) {
-        double startX1 = obj1.getStartLocation().x;
-        double endX1 = obj1.getLocation().x;
+        double startX1 = obj1.getStartLocation().getX();
+        double endX1 = obj1.getLocation().getX();
 
-        double startX2 = obj2.getStartLocation().x;
-        double endX2 = obj2.getLocation().x;
+        double startX2 = obj2.getStartLocation().getX();
+        double endX2 = obj2.getLocation().getX();
 
         return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
     }
@@ -205,8 +205,8 @@ public class Sim {
         }
 
         public Builder addObjects(Object obj) {
-            int x_cord = obj.getLocation().x;
-            int y_cord = obj.getLocation().y;
+            double x_cord = obj.getLocation().getX();
+            double y_cord = obj.getLocation().getY();
 
             if (y_cord > env.getHeight() || y_cord < 0) {
                 throw new IllegalArgumentException("y_cord must be between 0 and the specified height boundary");
@@ -216,7 +216,7 @@ public class Sim {
                 throw new IllegalArgumentException("x_cord must be between 0 and the specified width boundary");
             }
 
-            obj.setLocation(new Point(x_cord, y_cord));
+            obj.setLocation(new Location(x_cord, y_cord));
             env.addObject(obj);
             return this;
         }
@@ -246,17 +246,24 @@ public class Sim {
         private void handleCollision(Object obj1, Object obj2) {
             double mass1 = obj1.getMass();
             double mass2 = obj2.getMass();
-            double vel1 = obj1.getVelocity();
-            double vel2 = obj2.getVelocity();
 
-            double v1f = (((2 * mass1) / (mass1 + mass2)) * vel1) - (((mass1 - mass2) / (mass1 + mass2)) * vel2);
-            double v2f = (((mass1 - mass2) / (mass1 + mass2)) * vel1) + (((2 * mass2) / (mass1 + mass2)) * vel2);
+            double vel1x = obj1.getVelocity().getX();
+            double vel2x = obj2.getVelocity().getX();
+
+            double vel1y = obj1.getVelocity().getY();
+            double vel2y = obj2.getVelocity().getY();
+
+            double vel1xf = (((2 * mass1) / (mass1 + mass2)) * vel1x) - (((mass1 - mass2) / (mass1 + mass2)) * vel2x);
+            double vel2xf = (((mass1 - mass2) / (mass1 + mass2)) * vel1x) + (((2 * mass2) / (mass1 + mass2)) * vel2x);
+
+            double vel1yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
+            double vel2yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
 
             logger.info("A collision has occurred!");
             sim.collisionDetect = true;
 
-            obj1.setVelocity(v1f);
-            obj2.setVelocity(v2f);
+            obj1.setVelocity(new Velocity(vel1xf, vel1yf));
+            obj2.setVelocity(new Velocity(vel2xf, vel2yf));
         }
 
         private void displayObjects() {

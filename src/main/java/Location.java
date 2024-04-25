@@ -12,11 +12,11 @@ public class Location {
         this.y = y;
     }
 
-    public double getXLocation(){
+    public double getX(){
         return x;
     }
 
-    public double getYLocation(){
+    public double getY(){
         return y;
     }
 }

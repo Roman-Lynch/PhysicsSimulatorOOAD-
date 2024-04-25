@@ -13,11 +13,11 @@ public class Velocity {
         this.y = y;
     }
 
-    public double getXVelocity(){
+    public double getX(){
         return x;
     }
 
-    public double getYVelocity(){
+    public double getY(){
         return y;
     }
 

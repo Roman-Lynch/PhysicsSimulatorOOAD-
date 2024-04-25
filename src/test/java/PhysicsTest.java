@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
+import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -58,7 +59,7 @@ public class PhysicsTest
                 .createAndAddMars(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(0.002)
+                .setTimeSteps(0.002)
                 .setDuration(6)
                 .run();
 
@@ -70,7 +71,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 1;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -98,17 +99,17 @@ public class PhysicsTest
                 .createAndAddEarth(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
-                .setDuration(5)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 9.81 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 9.81 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
         System.out.println(finalY);
         System.out.println(correctY);
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -116,7 +117,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -144,13 +145,14 @@ public class PhysicsTest
                 .createAndAddVenus(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 8.87 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -158,7 +160,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -186,13 +188,14 @@ public class PhysicsTest
                 .createAndAddUranus(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 8.87 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -200,7 +203,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -228,13 +231,14 @@ public class PhysicsTest
                 .createAndAddSun(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 274 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 274 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -242,7 +246,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -270,13 +274,14 @@ public class PhysicsTest
                 .createAndAddSaturn(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 10.44 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 10.44 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -284,7 +289,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -312,13 +317,14 @@ public class PhysicsTest
                 .createAndAddNeptune(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 11.15 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 11.15 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -326,7 +332,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -354,13 +360,14 @@ public class PhysicsTest
                 .createAndAddMoon(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 1.62 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 1.62 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -368,7 +375,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -396,13 +403,14 @@ public class PhysicsTest
                 .createAndAddMercury(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 3.7 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 3.7 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -410,7 +418,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -438,13 +446,14 @@ public class PhysicsTest
                 .createAndAddJupiter(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 24.79 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 24.79 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
     @Test
@@ -452,7 +461,7 @@ public class PhysicsTest
     {
         int height = 20;
         int width = 10;
-        int runtime = 5;
+        int duration = 5;
 
         double mass1 = 1; // kg
         Location location1 = new Location(0, 0); // meters
@@ -480,13 +489,14 @@ public class PhysicsTest
                 .createAndAddBlackHole(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setRuntime(runtime)
+                .setDuration(duration)
+                .setTimeSteps(.02)
                 .run();
 
-        double correctY = 0 - (0.5 * 99999999.99999 * pow(runtime, 2));
+        double correctY = 0 - (0.5 * 99999999.99999 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
 
-        assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
+        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
     }
 
 

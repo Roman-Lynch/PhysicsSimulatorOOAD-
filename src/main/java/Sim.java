@@ -22,7 +22,9 @@ public class Sim {
             for (int j = 0; j < x; j++) {
                 boolean found = false;
                 for (int k = 0; k < env.getObjects().size(); k++) {
-                    if (env.getObject(k).getLocation().getX() == j && env.getObject(k).getLocation().getY() == i) {
+                    int objectX = (int) Math.round(env.getObject(k).getLocation().getX());
+                    int objectY = (int) Math.round(env.getObject(k).getLocation().getY());
+                    if (objectX == j && objectY == i) {
                         found = true;
                         break;
                     }
@@ -59,7 +61,8 @@ public class Sim {
 
         private boolean elasticCollisions = true;
         public Environment env;
-        private int timeSteps;
+        private double timeSteps;
+        private double duration;
 
         public Builder createAndAddMars(int height, int width, double wallElasticity) {
             if (height <= 0) {
@@ -222,11 +225,13 @@ public class Sim {
         }
         public Sim run() {
             logger.info("Running");
-            for (int t = 0; t <= timeSteps; t++) {
+            for (double t = 0; t <= duration; t += timeSteps) {
                 logger.info("TimeStep: " + t);
                 moveObjects(t);
                 checkCollisions();
-                displayObjects();
+                if (Math.abs(t - Math.round(t)) < 0.000001) {
+                    displayObjects();
+                }
             }
             return sim;
         }
@@ -273,7 +278,7 @@ public class Sim {
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
 
-        private void moveObjects(int timeStep) {
+        private void moveObjects(double timeStep) {
             for (int i = 0; i < env.getObjects().size(); i++)
             {
                 double xInitPos = env.getObject(i).getStartLocation().getX();
@@ -293,9 +298,14 @@ public class Sim {
             }
         }
 
-        public Builder setRuntime(int desiredRunTime) {
+        public Builder setRuntime(double desiredRunTime) {
             timeSteps = desiredRunTime;
             return this;
         }
+        public Builder setDuration(double desiredDuration) {
+            duration = desiredDuration;
+            return this;
+        }
+
     }
 }

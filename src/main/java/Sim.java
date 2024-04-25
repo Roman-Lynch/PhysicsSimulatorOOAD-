@@ -39,16 +39,6 @@ public class Sim {
         }
     }
 
-    boolean checkOverlap(Object obj1, Object obj2) {
-        double startX1 = obj1.getStartLocation().getX();
-        double endX1 = obj1.getLocation().getX();
-
-        double startX2 = obj2.getStartLocation().getX();
-        double endX2 = obj2.getLocation().getX();
-
-        return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
-    }
-
     public static Builder newBuilder() {
         return new Builder();
     }
@@ -240,13 +230,24 @@ public class Sim {
             if (env.getObjects().size() > 1) {
                 for (int i = 0; i < env.getObjects().size(); i++) {
                     for (int j = i + 1; j < env.getObjects().size(); j++) {
-                        if (sim.checkOverlap(env.getObject(i), env.getObject(j))) {
+                        if (checkOverlap(env.getObject(i), env.getObject(j))) {
                             handleCollision(env.getObject(i), env.getObject(j));
                         }
                     }
                 }
             }
         }
+
+        boolean checkOverlap(Object obj1, Object obj2) {
+            double startX1 = obj1.getStartLocation().getX();
+            double endX1 = obj1.getLocation().getX();
+
+            double startX2 = obj2.getStartLocation().getX();
+            double endX2 = obj2.getLocation().getX();
+
+            return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
+        }
+
 
         private void handleCollision(Object obj1, Object obj2) {
             double mass1 = obj1.getMass();
@@ -273,7 +274,7 @@ public class Sim {
 
         private void displayObjects() {
             for (int i = 0; i < env.getObjects().size(); i++) {
-                logger.info("Object " + (i + 1) + " has horizonal velocity: " + env.getObject(i).getVelocity() + " and position: " + env.getObject(i).getLocation());
+                logger.info("Object " + (i + 1) + " has horizonal velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY());
             }
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
@@ -302,6 +303,7 @@ public class Sim {
             timeSteps = desiredRunTime;
             return this;
         }
+
         public Builder setDuration(double desiredDuration) {
             duration = desiredDuration;
             return this;

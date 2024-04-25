@@ -99,6 +99,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setRuntime(runtime)
+                .setDuration(5)
                 .run();
 
         double correctY = 0 - (0.5 * 9.81 * pow(runtime, 2));

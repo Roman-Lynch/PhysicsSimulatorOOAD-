@@ -6,22 +6,20 @@ import java.awt.*;
 public class Object {
     private double height;
     private double width;
-    private double velocity;
-    private double startVelocity;
+    private Velocity velocity;
+    private Velocity startVelocity;
     private double mass;
     private Point location;
     private Point startLocation;
-    private Direction direction;
 
-    public Object(double height, double width, double velocity, double mass, Point location, Direction direction) {
+    public Object(double height, double width, double xVelocity, double yVelocity, double mass, Point location) {
         this.height = height;
         this.width = width;
-        this.velocity = velocity;
-        this.startVelocity = velocity;
+        this.velocity.setVelocity(xVelocity, yVelocity);
+        this.startVelocity = new Velocity(xVelocity, yVelocity);
         this.mass = mass;
         this.location = location;
         this.startLocation = new Point(location.x, location.y);
-        this.direction = direction;
     }
 
     public void setLocation(Point point) {
@@ -38,15 +36,17 @@ public class Object {
         return width;
     }
 
-    public double getVelocity() {
+    public Velocity getVelocity() {
         return velocity;
     }
 
-    public double getStartVelocity() {
+    public Velocity getStartVelocity() {
         return startVelocity;
     }
 
-    public void setVelocity(double newVel) { velocity = newVel; }
+    public void setVelocity(double newX, double newY) {
+        velocity.setVelocity(newX, newY);
+    }
 
     public double getMass() {
         return mass;
@@ -58,12 +58,8 @@ public class Object {
 
     public Point getStartLocation() { return startLocation; }
 
-    public Direction getDirection() {
-        return direction;
-    }
-
     public boolean isValidObj() {
-        return height != 0 && width != 0 && velocity != 0 && mass != 0 && direction != null;
+        return height != 0 && width != 0 && mass != 0;
     }
 
     public static Builder newBuilder() {
@@ -73,10 +69,10 @@ public class Object {
     public static class Builder {
         private double height;
         private double width;
-        private double velocity;
+        private Velocity velocity;
         private double mass;
         private Point location;
-        private Direction direction;
+
 
         public Builder shape(double height, double width) {
             this.height = height;
@@ -84,8 +80,8 @@ public class Object {
             return this;
         }
 
-        public Builder velocity(double velocity) {
-            this.velocity = velocity;
+        public Builder velocity(double xVelocity, double yVelocity) {
+            this.velocity.setVelocity(xVelocity, yVelocity);
             return this;
         }
 

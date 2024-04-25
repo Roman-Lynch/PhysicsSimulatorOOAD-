@@ -1,2 +1,8 @@
-package PACKAGE_NAME;public enum EventType {
+public enum EventType {
+    StartSim,
+    EndSim,
+    SecondPassed,
+    ObjectCollision,
+    WallCollision,
+    All
 }

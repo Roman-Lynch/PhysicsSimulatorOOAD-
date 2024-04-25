@@ -1,2 +1,5 @@
-package PACKAGE_NAME;public interface IObservable {
+import java.util.List;
+
+public interface IObservable {
+    void subscribe(IObserver observer, List<EventType> interestedEvents);
 }

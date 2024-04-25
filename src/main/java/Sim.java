@@ -216,7 +216,7 @@ public class Sim {
         public Sim run() {
             logger.info("Running");
             for (double t = 0; t <= duration; t += timeSteps) {
-                logger.info("TimeStep: " + t);
+
                 moveObjects(t);
                 checkCollisions();
                 if (Math.abs(t - Math.round(t)) < 0.000001) {
@@ -239,15 +239,21 @@ public class Sim {
         }
 
         boolean checkOverlap(Object obj1, Object obj2) {
+            Location location1 = nextLocation(obj1, timeSteps);
             double startX1 = obj1.getStartLocation().getX();
             double startY1 = obj1.getStartLocation().getY();
-            double endX1 = obj1.getLocation().getX();
+            double endX1 = location1.getX();
+            double endY1 = location1.getY();
 
-
+            Location location2 = nextLocation(obj2, timeSteps);
             double startX2 = obj2.getStartLocation().getX();
-            double endX2 = obj2.getLocation().getX();
+            double startY2 = obj2.getStartLocation().getY();
+            double endX2 = location2.getX();
+            double endY2 = location2.getY();
 
-            return (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
+            boolean horizontalOverlap = (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
+            boolean verticalOverlap = (startY1 <= endY2 && endY1 >= startY2) || (startY2 <= endY1 && endY2 >= startY1);
+            return horizontalOverlap && verticalOverlap;
         }
 
 
@@ -281,12 +287,12 @@ public class Sim {
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
 
-        private Location nextLocation(int obj, double timeStep) {
-            double xInitPos = env.getObject(obj).getStartLocation().getX();
-            double yInitPos = env.getObject(obj).getStartLocation().getY();
+        private Location nextLocation(Object obj, double timeStep) {
+            double xInitPos = obj.getStartLocation().getX();
+            double yInitPos = obj.getStartLocation().getY();
 
-            double xInitVelocity = env.getObject(obj).getStartVelocity().getX();
-            double yInitVelocity = env.getObject(obj).getStartVelocity().getY();
+            double xInitVelocity = obj.getStartVelocity().getX();
+            double yInitVelocity = obj.getStartVelocity().getY();
 
             double xAcceleration = 0;
             double yAcceleration = -env.getGravity();
@@ -300,7 +306,7 @@ public class Sim {
         private void moveObjects(double timeStep) {
             for (int i = 0; i < env.getObjects().size(); i++)
             {
-                env.getObject(i).setLocation(nextLocation(i, timeStep));
+                env.getObject(i).setLocation(nextLocation(env.getObject(i), timeStep));
             }
         }
 

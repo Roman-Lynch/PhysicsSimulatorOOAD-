@@ -100,8 +100,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (-0.5 * 9.81 * pow(runtime, 2));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 9.81 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         System.out.println(finalY);
         System.out.println(correctY);
@@ -145,8 +145,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 8.87 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 8.87 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -187,8 +187,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 8.87 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 8.87 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -229,8 +229,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 274 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 274 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -271,8 +271,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 10.44 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 10.44 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -313,8 +313,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 11.15 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 11.15 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -355,8 +355,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 1.62 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 1.62 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -397,10 +397,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 3.7 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
-        System.out.println(finalY);
-        System.out.println(correctY);
+        double correctY = 0 - (0.5 * 3.7 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -441,10 +439,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 24.79 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
-        System.out.println(finalY);
-        System.out.println(correctY);
+        double correctY = 0 - (0.5 * 24.79 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -485,8 +481,8 @@ public class PhysicsTest
                 .setRuntime(runtime)
                 .run();
 
-        int correctY = (int) (0 - (0.5 * 99999999.99999 * pow(runtime, 2)));
-        int finalY = objOne.getLocation().y;
+        double correctY = 0 - (0.5 * 99999999.99999 * pow(runtime, 2));
+        double finalY = objOne.getLocation().getY();
 
         assert(finalY == correctY); //Note, overtime there may be slight errors due to rounding
     }
@@ -500,7 +496,7 @@ public class PhysicsTest
         Sim sim = new Sim();
         Environment env = new Environment(3,4,3,1);
 
-        sim.display(env, x,y);
+        sim.display(env, x, y);
     }
 }
 

@@ -78,8 +78,8 @@ public class Object {
             return this;
         }
 
-        public Builder velocity(double xVelocity, double yVelocity) {
-            this.velocity.setVelocity(xVelocity, yVelocity);
+        public Builder velocity(Velocity velocity) {
+            this.velocity.setVelocity(velocity.getX(), velocity.getY());
             return this;
         }
 

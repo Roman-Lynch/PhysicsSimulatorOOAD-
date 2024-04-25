@@ -12,15 +12,14 @@ public class PhysicsTest
     {
         double height = 5;
         double width = 5;
-        double velocity = 1000; // m/s
         double mass = 100; // kg
-        Point location = new Point(0, 0); // meters
+        Location location = new Location(0, 0); // meters
+        Velocity velocity = new Velocity(1000, 0);
 
         Object obj = Object.newBuilder()
                 .shape(height, width)
                 .mass(mass)
                 .velocity(velocity)
-                .direction(Direction.RIGHT)
                 .location(location)
                 .create();
 
@@ -33,19 +32,18 @@ public class PhysicsTest
         int height = 20;
         int width = 20;
 
-        double velocity1 = 5; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(5, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(19, 0);
+        Location location2 = new Location(19, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -53,7 +51,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -74,19 +71,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 1;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -94,7 +90,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -121,19 +116,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -141,7 +135,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -165,19 +158,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -185,7 +177,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -209,19 +200,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -229,7 +219,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -253,19 +242,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -273,7 +261,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -297,19 +284,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -317,7 +303,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -341,19 +326,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -361,7 +345,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -385,19 +368,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -405,7 +387,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -431,19 +412,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -451,7 +431,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 
@@ -477,19 +456,18 @@ public class PhysicsTest
         int width = 10;
         int runtime = 5;
 
-        double velocity1 = 3; // m/s
         double mass1 = 1; // kg
-        Point location1 = new Point(0, 0); // meters
+        Location location1 = new Location(0, 0); // meters
+        Velocity velocity1 = new Velocity(3, 0);
 
-        double velocity2 = -3; // m/s
         double mass2 = 2; // kg
-        Point location2 = new Point(10, 0);
+        Location location2 = new Location(10, 0);
+        Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
                 .shape(1,1)
                 .mass(mass1)
                 .velocity(velocity1)
-                .direction(Direction.RIGHT)
                 .location(location1)
                 .create();
 
@@ -497,7 +475,6 @@ public class PhysicsTest
                 .shape(1, 1)
                 .mass(mass2)
                 .velocity(velocity2)
-                .direction(Direction.LEFT)
                 .location(location2)
                 .create();
 

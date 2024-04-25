@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70e5ae11-8791-49ac-a491-90d004e0c36f" name="Changes" comment="">
+    <list default="true" id="43d99da6-0a2f-4e7c-aad9-51b0b7dfb083" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Object.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Object.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Sim.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Sim.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PhysicsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,11 +37,6 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "Rebasing master"
-  }
-}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\PhysicsSimulatorOOAD-" />
@@ -66,7 +64,6 @@
       <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
       <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
       <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>true</RunAsTest>
       <method v="2" />
     </configuration>
     <recent_temporary>

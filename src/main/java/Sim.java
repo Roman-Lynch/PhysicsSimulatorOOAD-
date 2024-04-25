@@ -267,24 +267,22 @@ public class Sim {
         }
 
         private void moveObjects(int timeStep) {
-            for (int i = 0; i < env.getObjects().size(); i++) {
-                double velocityX = 0;
-                double posY = 0;
+            for (int i = 0; i < env.getObjects().size(); i++)
+            {
+                double xInitPos = env.getObject(i).getStartLocation().getX();
+                double yInitPos = env.getObject(i).getStartLocation().getY();
 
-                if (env.getObject(i).getDirection() == Direction.LEFT || env.getObject(i).getDirection() == Direction.RIGHT)
-                {
-                    velocityX = env.getObject(i).getVelocity();
-                    posY = env.getObject(i).getStartLocation().y - (0.5 * env.getGravity() * pow(timeStep, 2));
-                }
-                else
-                {
-                    posY = env.getObject(i).getStartLocation().y + (env.getObject(i).getVelocity() * timeStep ) - (0.5 * env.getGravity() * pow(timeStep, 2));
-                }
+                double xInitVelocity = env.getObject(i).getStartVelocity().getX();
+                double yInitVelocity = env.getObject(i).getStartVelocity().getY();
 
-                Point location = env.getObject(i).getLocation();
-                env.getObject(i).setLocation(new Point((int)(location.x + velocityX), (int)posY));
-//                location.x += velocityX;
-//                location.y = (int)posY;
+                double xAcceleration = 0;
+                double yAcceleration = -env.getGravity();
+
+                double xFinalPos = xInitPos + (xInitVelocity * timeStep) + (0.5 * xAcceleration * pow(timeStep, 2));
+                double yFinalPos = yInitPos + (yInitVelocity * timeStep) + (0.5 * yAcceleration * pow(timeStep, 2));
+
+                Location newLocation = new Location(xFinalPos, yFinalPos);
+                env.getObject(i).setLocation(newLocation);
             }
         }
 

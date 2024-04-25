@@ -281,23 +281,26 @@ public class Sim {
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
 
+        private Location nextLocation(int obj, double timeStep) {
+            double xInitPos = env.getObject(obj).getStartLocation().getX();
+            double yInitPos = env.getObject(obj).getStartLocation().getY();
+
+            double xInitVelocity = env.getObject(obj).getStartVelocity().getX();
+            double yInitVelocity = env.getObject(obj).getStartVelocity().getY();
+
+            double xAcceleration = 0;
+            double yAcceleration = -env.getGravity();
+
+            double xFinalPos = xInitPos + (xInitVelocity * timeStep) + (0.5 * xAcceleration * pow(timeStep, 2));
+            double yFinalPos = yInitPos + (yInitVelocity * timeStep) + (0.5 * yAcceleration * pow(timeStep, 2));
+
+            return new Location(xFinalPos, yFinalPos);
+        }
+
         private void moveObjects(double timeStep) {
             for (int i = 0; i < env.getObjects().size(); i++)
             {
-                double xInitPos = env.getObject(i).getStartLocation().getX();
-                double yInitPos = env.getObject(i).getStartLocation().getY();
-
-                double xInitVelocity = env.getObject(i).getStartVelocity().getX();
-                double yInitVelocity = env.getObject(i).getStartVelocity().getY();
-
-                double xAcceleration = 0;
-                double yAcceleration = -env.getGravity();
-
-                double xFinalPos = xInitPos + (xInitVelocity * timeStep) + (0.5 * xAcceleration * pow(timeStep, 2));
-                double yFinalPos = yInitPos + (yInitVelocity * timeStep) + (0.5 * yAcceleration * pow(timeStep, 2));
-
-                Location newLocation = new Location(xFinalPos, yFinalPos);
-                env.getObject(i).setLocation(newLocation);
+                env.getObject(i).setLocation(nextLocation(i, timeStep));
             }
         }
 

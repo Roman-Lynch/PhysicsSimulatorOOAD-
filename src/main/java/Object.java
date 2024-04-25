@@ -9,23 +9,21 @@ public class Object {
     private Velocity velocity;
     private Velocity startVelocity;
     private double mass;
-    private Point location;
-    private Point startLocation;
+    private Location location;
+    private Location startLocation;
 
-    public Object(double height, double width, double xVelocity, double yVelocity, double mass, Point location) {
+    public Object(double height, double width, Velocity velocity, double mass, Location location) {
         this.height = height;
         this.width = width;
-        this.velocity.setVelocity(xVelocity, yVelocity);
-        this.startVelocity = new Velocity(xVelocity, yVelocity);
+        this.velocity = velocity;
+        this.startVelocity = new Velocity(velocity.getXVelocity(), velocity.getYVelocity());
         this.mass = mass;
         this.location = location;
-        this.startLocation = new Point(location.x, location.y);
+        this.startLocation = new Location(location.getXLocation(), location.getYLocation());
     }
 
-    public void setLocation(Point point) {
+    public void setLocation(Location point) {
         location = point;
-        if (startLocation == null)
-            startLocation = new Point(location.x, location.y);
     }
 
     public double getHeight() {
@@ -52,11 +50,11 @@ public class Object {
         return mass;
     }
 
-    public Point getLocation() {
+    public Location getLocation() {
         return location;
     }
 
-    public Point getStartLocation() { return startLocation; }
+    public Location getStartLocation() { return startLocation; }
 
     public boolean isValidObj() {
         return height != 0 && width != 0 && mass != 0;
@@ -71,7 +69,7 @@ public class Object {
         private double width;
         private Velocity velocity;
         private double mass;
-        private Point location;
+        private Location location;
 
 
         public Builder shape(double height, double width) {
@@ -90,14 +88,13 @@ public class Object {
             return this;
         }
 
-        public Builder location(Point location) {
+        public Builder location(Location location) {
             this.location = location;
             return this;
         }
 
         public Object create() {
-            Object obj = new Object(height, width, velocity, mass, location);
-            return obj;
+            return new Object(height, width, velocity, mass, location);
         }
     }
 }

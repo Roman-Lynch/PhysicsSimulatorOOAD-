@@ -240,7 +240,9 @@ public class Sim {
 
         boolean checkOverlap(Object obj1, Object obj2) {
             double startX1 = obj1.getStartLocation().getX();
+            double startY1 = obj1.getStartLocation().getY();
             double endX1 = obj1.getLocation().getX();
+
 
             double startX2 = obj2.getStartLocation().getX();
             double endX2 = obj2.getLocation().getX();
@@ -299,7 +301,7 @@ public class Sim {
             }
         }
 
-        public Builder setRuntime(double desiredRunTime) {
+        public Builder setTimeSteps(double desiredRunTime) {
             timeSteps = desiredRunTime;
             return this;
         }

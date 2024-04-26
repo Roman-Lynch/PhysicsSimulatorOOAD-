@@ -202,7 +202,7 @@ public class Sim {
             double x_cord = obj.getLocation().getX();
             double y_cord = obj.getLocation().getY();
 
-            if (y_cord > env.getHeight() || y_cord < 0) {
+            if ((y_cord - obj.getRadius()) <= -env.getHeight() || y_cord + obj.getRadius() >= 0) {
                 throw new IllegalArgumentException("y_cord must be between 0 and the specified height boundary");
             }
 
@@ -273,11 +273,11 @@ public class Sim {
                 returnFlag = true;
             }
 
-            // Check Top Borders
-            double yLocationOfTopWall = envior.getHeight();
-            if ((location.getY() + radius) >= yLocationOfTopWall) {
+            // Check floor and ceiling Borders
+            double yLocationOfBottomWall = -(envior.getHeight());
+            if ((location.getY() - radius) <= yLocationOfBottomWall) {
                 returnFlag = true;
-            } else if ((location.getY() - radius) <= 0) {
+            } else if ((location.getY() + radius) >= 0) {
                 returnFlag = true;
             }
 
@@ -307,10 +307,10 @@ public class Sim {
         }
 
         private void checkWallCollisions() {
-            if (env.getObjects().size() > 1) {
+            if (!env.getObjects().isEmpty()) {
                 for (int i = 0; i < env.getObjects().size(); i++) {
                     if (checkWallOverlap(env.getObject(i), env)) {
-                        handleWallCollision(env.getObject(i));
+                        handleWallCollision(env.getObject(i), env);
                     }
                 }
             }
@@ -323,23 +323,26 @@ public class Sim {
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
 
-        private void handleWallCollision(Object obj) {
-            double mass = obj.getMass();
-            double massOfWall = Double.MAX_VALUE;
-
-            double velObjX = obj.getVelocity().getX();
-            double velWallX = 0;
-
-            double velObjY = obj.getVelocity().getY();
-            double velWallY = 0;
-
-            double velObjXf = (((mass - massOfWall) / (mass + massOfWall)) * velObjX) + (((2 * massOfWall) / (mass + massOfWall)) * velWallX);
-
-            double velObjYf = (((mass - massOfWall) / (mass + massOfWall)) * velObjY) + (((2 * massOfWall) / (mass + massOfWall)) * velWallY);
+        private void handleWallCollision(Object obj, Environment envior) {
+            Location location = obj.getLocation();
+            double radius = obj.getRadius();
 
             sim.collisionDetect = true;
 
-            obj.setVelocity(new Velocity(velObjXf, velObjYf));
+            double velObjX = obj.getVelocity().getX();
+            double velObjY = obj.getVelocity().getY();
+
+            // If collision is with side wall
+            double xLocationOfFarWall = envior.getWidth();
+            if (((location.getX() + radius) >= xLocationOfFarWall) || ((location.getX() - radius) <= 0)) {
+                obj.setVelocity(new Velocity(-velObjX, velObjY));
+            }
+
+            // If collision is with ceiling or floor
+            double yLocationOfBottomWall = -(envior.getHeight());
+            if (((location.getY() - radius) <= yLocationOfBottomWall) || ((location.getY() + radius) >= 0)) {
+                obj.setVelocity(new Velocity(velObjX, -velObjY));
+            }
         }
 
         private Location nextLocation(Object obj, double timeStep) {

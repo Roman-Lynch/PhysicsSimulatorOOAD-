@@ -34,7 +34,7 @@ public class PhysicsTest
         int width = 50;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(20, 0); // meters
+        Location location1 = new Location(20, -20); // meters
         Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()

@@ -18,7 +18,7 @@ public class PhysicsTest
         Velocity velocity = new Velocity(1000, 0);
 
         Object obj = Object.newBuilder()
-                .shape(height, width)
+                .radius(1)
                 .mass(mass)
                 .velocity(velocity)
                 .location(location)
@@ -30,26 +30,26 @@ public class PhysicsTest
     @Test
     public void TestSim()
     {
-        int height = 25;
+        int height = 40;
         int width = 50;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(5, 0);
+        Location location1 = new Location(20, 0); // meters
+        Velocity velocity1 = new Velocity(1, 0);
 
         double mass2 = 2; // kg
-        Location location2 = new Location(19, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location2 = new Location(28, 0);
+        Velocity velocity2 = new Velocity(-1, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(2)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(2)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -59,7 +59,7 @@ public class PhysicsTest
                 .createAndAddMars(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
-                .setTimeSteps(0.002)
+                .setTimeSteps(0.0001)
                 .setDuration(6)
                 .run();
 
@@ -82,14 +82,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -128,14 +128,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -171,14 +171,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -214,14 +214,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -257,14 +257,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -300,14 +300,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -343,14 +343,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -386,14 +386,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -429,14 +429,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
@@ -472,14 +472,14 @@ public class PhysicsTest
         Velocity velocity2 = new Velocity(-3, 0);
 
         Object objOne = Object.newBuilder()
-                .shape(1,1)
+                .radius(1)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
                 .create();
 
         Object objTwo = Object.newBuilder()
-                .shape(1, 1)
+                .radius(1)
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)

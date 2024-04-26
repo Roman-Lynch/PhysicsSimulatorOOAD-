@@ -24,7 +24,8 @@ public class Sim {
                 for (int k = 0; k < env.getObjects().size(); k++) {
                     int objectX = (int) Math.round(env.getObject(k).getLocation().getX());
                     int objectY = (int) Math.round(env.getObject(k).getLocation().getY());
-                    if (objectX == j && objectY == i) {
+                    double distance = Math.sqrt(Math.pow(objectX - j, 2) + Math.pow(objectY - i, 2));
+                    if (distance <= env.getObject(k).getRadius()) {
                         found = true;
                         break;
                     }
@@ -220,7 +221,11 @@ public class Sim {
                 moveObjects(t);
                 checkCollisions();
                 if (Math.abs(t - Math.round(t)) < 0.000001) {
+                    if(sim.collisionDetected()){
+                        logger.info("A collision has occurred!");
+                    }
                     displayObjects();
+
                 }
             }
             return sim;
@@ -239,21 +244,17 @@ public class Sim {
         }
 
         boolean checkOverlap(Object obj1, Object obj2) {
-            Location location1 = nextLocation(obj1, timeSteps);
-            double startX1 = obj1.getStartLocation().getX();
-            double startY1 = obj1.getStartLocation().getY();
-            double endX1 = location1.getX();
-            double endY1 = location1.getY();
+            Location location1 = obj1.getLocation();
+            Location location2 = obj2.getLocation();
 
-            Location location2 = nextLocation(obj2, timeSteps);
-            double startX2 = obj2.getStartLocation().getX();
-            double startY2 = obj2.getStartLocation().getY();
-            double endX2 = location2.getX();
-            double endY2 = location2.getY();
+            double radius1 = obj1.getRadius();
+            double radius2 = obj2.getRadius();
 
-            boolean horizontalOverlap = (startX1 <= endX2 && endX1 >= startX2) || (startX2 <= endX1 && endX2 >= startX1);
-            boolean verticalOverlap = (startY1 <= endY2 && endY1 >= startY2) || (startY2 <= endY1 && endY2 >= startY1);
-            return horizontalOverlap && verticalOverlap;
+            double dx = location1.getX() - location2.getX();
+            double dy = location1.getY() - location2.getY();
+            double distance = Math.sqrt(dx * dx + dy * dy);
+
+            return distance <= (radius1 + radius2);
         }
 
 
@@ -273,7 +274,6 @@ public class Sim {
             double vel1yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
             double vel2yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
 
-            logger.info("A collision has occurred!");
             sim.collisionDetect = true;
 
             obj1.setVelocity(new Velocity(vel1xf, vel1yf));

@@ -37,14 +37,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Gradle.PhysicsTest.BorderTest.executor": "Run",
-    "Gradle.PhysicsTest.TestSim.executor": "Run",
-    "Gradle.PhysicsTest.TestValidObj.executor": "Run",
-    "git-widget-placeholder": "master"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.PhysicsTest.BorderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PhysicsTest.TestSim.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PhysicsTest.TestValidObj.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\PhysicsSimulatorOOAD-" />

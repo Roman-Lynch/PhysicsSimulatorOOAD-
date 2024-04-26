@@ -388,7 +388,7 @@ public class Sim {
             for (int i = 0; i < env.getObjects().size(); i++) {
                 double vel = Math.sqrt(Math.pow(env.getObject(i).getVelocity().getX(), 2) + Math.pow(env.getObject(i).getVelocity().getY(), 2));
                 double KE = (.5)*(env.getObject(i).getMass())*(Math.pow(vel, 2));
-                double PE = env.getObject(i).getMass() * env.getGravity() * env.getObject(i).getLocation().getY();
+                double PE = env.getObject(i).getMass() * env.getGravity() * (env.getHeight()+env.getObject(i).getLocation().getY());
                 PE = Math.abs(PE);
                 double totalEnergy = PE + KE;
                 totalEnergy = totalEnergy;

@@ -300,6 +300,12 @@ public class Sim {
             double xFinalPos = xInitPos + (xInitVelocity * timeStep) + (0.5 * xAcceleration * pow(timeStep, 2));
             double yFinalPos = yInitPos + (yInitVelocity * timeStep) + (0.5 * yAcceleration * pow(timeStep, 2));
 
+            double xVelFinal = xInitVelocity + (xAcceleration * timeStep);
+            double yVelFinal = yInitVelocity + (yAcceleration * timeStep);
+            Velocity newVel = new Velocity(xVelFinal,yVelFinal);
+
+            obj.setVelocity(newVel);
+
             return new Location(xFinalPos, yFinalPos);
         }
 

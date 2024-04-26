@@ -29,10 +29,6 @@ public class Object {
         return radius;
     }
 
-    public void setRadius(double r){
-        this.radius = r;
-    }
-
     public Velocity getVelocity() {
         return velocity;
     }

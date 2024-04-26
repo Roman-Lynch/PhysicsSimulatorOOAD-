@@ -17,7 +17,7 @@ public class Sim {
     }
 
     public void display(Environment env, int x, int y){
-        for(int i = (x/2); i > -(x/2); i--) {
+        for(int i = 0; i > -(x); i--) {
             StringBuilder row = new StringBuilder();
             for (int j = 0; j < y; j++) {
                 boolean found = false;

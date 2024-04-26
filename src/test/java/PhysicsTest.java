@@ -2,8 +2,7 @@ import org.junit.jupiter.api.Test;
 
 import java.awt.*;
 
-import static java.lang.Math.abs;
-import static java.lang.Math.pow;
+import static java.lang.Math.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PhysicsTest
@@ -28,9 +27,9 @@ public class PhysicsTest
     }
 
     @Test
-    public void BorderTest()
+    public void BottomBorderTest()
     {
-        int height = 40;
+        int height = 30;
         int width = 50;
 
         double mass1 = 1; // kg
@@ -51,7 +50,40 @@ public class PhysicsTest
                 .setDuration(20)
                 .run();
 
+        assert(objOne.getLocation().getX() == 20.0);
+        assert(Math.round(objOne.getLocation().getY())== -21.0);
     }
+
+    @Test
+    public void RightWallBorderTest()
+    {
+        int height = 40;
+        int width = 50;
+
+        double mass1 = 1; // kg
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(-10, 0);
+
+        Object objOne = Object.newBuilder()
+                .radius(2)
+                .mass(mass1)
+                .velocity(velocity1)
+                .location(location1)
+                .create();
+
+        Sim runSim = Sim.newBuilder()
+                .createAndAddMars(height, width,1)
+                .addObjects(objOne)
+                .setTimeSteps(0.0001)
+                .setDuration(7)
+                .run();
+
+        assert(Math.round(objOne.getLocation().getX()) == 42.0);
+        assert(Math.round(objOne.getLocation().getY())== -21.0);
+    }
+
+
+
     @Test
     public void TestSim()
     {

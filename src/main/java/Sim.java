@@ -220,6 +220,7 @@ public class Sim {
 
                 moveObjects(t);
                 checkCollisions();
+                checkWallCollisions();
                 if (Math.abs(t - Math.round(t)) < 0.000001) {
                     if(sim.collisionDetected()){
                         logger.info("A collision has occurred!");
@@ -257,6 +258,30 @@ public class Sim {
             return distance <= (radius1 + radius2);
         }
 
+        boolean checkWallOverlap(Object obj1, Environment envior) {
+            boolean returnFlag = false;
+
+            Location location = obj1.getLocation();
+            double radius = obj1.getRadius();
+
+            // Check Side Borders
+            double xLocationOfFarWall = envior.getWidth();
+            if ((location.getX() + radius) >= xLocationOfFarWall) {
+                returnFlag = true;
+            } else if ((location.getX() - radius) <= 0) {
+                returnFlag = true;
+            }
+
+            // Check Top Borders
+            double yLocationOfTopWall = envior.getHeight();
+            if ((location.getY() + radius) >= yLocationOfTopWall) {
+                returnFlag = true;
+            } else if ((location.getY() - radius) <= 0) {
+                returnFlag = true;
+            }
+
+            return returnFlag;
+        }
 
         private void handleCollision(Object obj1, Object obj2) {
             double mass1 = obj1.getMass();
@@ -268,11 +293,11 @@ public class Sim {
             double vel1y = obj1.getVelocity().getY();
             double vel2y = obj2.getVelocity().getY();
 
-            double vel1xf = (((2 * mass1) / (mass1 + mass2)) * vel1x) - (((mass1 - mass2) / (mass1 + mass2)) * vel2x);
-            double vel2xf = (((mass1 - mass2) / (mass1 + mass2)) * vel1x) + (((2 * mass2) / (mass1 + mass2)) * vel2x);
+            double vel1xf = (((mass1 - mass2) / (mass1 + mass2)) * vel1x) + (((2 * mass2) / (mass1 + mass2)) * vel2x);
+            double vel2xf = (((2 * mass1) / (mass1 + mass2)) * vel1x) - (((mass1 - mass2) / (mass1 + mass2)) * vel2x);
 
-            double vel1yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
-            double vel2yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
+            double vel1yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
+            double vel2yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
 
             sim.collisionDetect = true;
 
@@ -280,11 +305,40 @@ public class Sim {
             obj2.setVelocity(new Velocity(vel2xf, vel2yf));
         }
 
+        private void checkWallCollisions() {
+            if (env.getObjects().size() > 1) {
+                for (int i = 0; i < env.getObjects().size(); i++) {
+                    if (checkWallOverlap(env.getObject(i), env)) {
+                        handleWallCollision(env.getObject(i));
+                    }
+                }
+            }
+        }
+
         private void displayObjects() {
             for (int i = 0; i < env.getObjects().size(); i++) {
                 logger.info("Object " + (i + 1) + " has horizonal velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY());
             }
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
+        }
+
+        private void handleWallCollision(Object obj) {
+            double mass = obj.getMass();
+            double massOfWall = Double.MAX_VALUE;
+
+            double velObjX = obj.getVelocity().getX();
+            double velWallX = 0;
+
+            double velObjY = obj.getVelocity().getY();
+            double velWallY = 0;
+
+            double velObjXf = (((mass - massOfWall) / (mass + massOfWall)) * velObjX) + (((2 * massOfWall) / (mass + massOfWall)) * velWallX);
+
+            double velObjYf = (((mass - massOfWall) / (mass + massOfWall)) * velObjY) + (((2 * massOfWall) / (mass + massOfWall)) * velWallY);
+
+            sim.collisionDetect = true;
+
+            obj.setVelocity(new Velocity(velObjXf, velObjYf));
         }
 
         private Location nextLocation(Object obj, double timeStep) {

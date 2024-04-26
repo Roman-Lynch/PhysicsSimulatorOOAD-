@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import static java.lang.Math.pow;
 
-public class Sim {
-
+public class Sim implements IObservable{
 
     private static final Logger logger = LoggerFactory.getLogger(Sim.class);
     private boolean collisionDetect = false;
@@ -416,5 +415,12 @@ public class Sim {
             return this;
         }
 
+    }
+
+    @Override
+    public void subscribe(IObserver observer, List<EventType> interestedEvents) {
+        for (EventType event : interestedEvents) {
+            EventBus.getInstance().attach(observer, event);
+        }
     }
 }

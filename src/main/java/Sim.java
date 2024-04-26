@@ -224,6 +224,7 @@ public class Sim {
                 if (Math.abs(t - Math.round(t)) < 0.000001) {
                     if(sim.collisionDetected()){
                         logger.info("A collision has occurred!");
+                        sim.collisionDetect = false;
                     }
                     displayObjects();
 

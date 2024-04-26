@@ -51,6 +51,7 @@ public class Sim {
 
         private double timmer;
 
+        private double damper = 1;
 
         private boolean elastic = true;
         public Environment env;
@@ -236,8 +237,6 @@ public class Sim {
             return sim;
         }
 
-
-
         private void checkCollisions(double timeSteps) {
             if (env.getObjects().size() > 1) {
                 for (int i = 0; i < env.getObjects().size(); i++) {
@@ -325,14 +324,24 @@ public class Sim {
 
                 sim.collisionDetect = true;
 
+                double v1xf = vel1xf * damper;
+                double v2xf = vel2xf * damper;
+                double v1yf = vel1yf * damper;
+                double v2yf = vel2yf * damper;
+
                 obj1.setVelocity(new Velocity(vel1xf, vel1yf));
                 obj2.setVelocity(new Velocity(vel2xf, vel2yf));
+
+
             }
             else {
                 double vel1xf = (((mass1*vel1x)+(mass2*vel2x))/(mass1+mass2));
                 double vel1yf = (((mass1*vel1y)+(mass2*vel2y))/(mass1+mass2));
 
                 sim.collisionDetect = true;
+
+                double v1xf = vel1xf * damper;
+                double v1yf = vel1yf * damper;
 
                 obj1.setVelocity(new Velocity(vel1xf, vel1yf));
                 obj2.setVelocity(new Velocity(vel1xf, vel1yf));
@@ -377,7 +386,14 @@ public class Sim {
 
         private void displayObjects() {
             for (int i = 0; i < env.getObjects().size(); i++) {
-                logger.info("Object " + (i + 1) + " has velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and mass: " + env.getObject(i).getMass() + "kg and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY());
+                double vel = Math.sqrt(Math.pow(env.getObject(i).getVelocity().getX(), 2) + Math.pow(env.getObject(i).getVelocity().getY(), 2));
+                double KE = (.5)*(env.getObject(i).getMass())*(Math.pow(vel, 2));
+                double PE = env.getObject(i).getMass() * env.getGravity() * env.getObject(i).getLocation().getY();
+                PE = Math.abs(PE);
+                double totalEnergy = PE + KE;
+                totalEnergy = totalEnergy;
+
+                logger.info("Object " + (i + 1) + " has Total Energy: " + totalEnergy + " and velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and mass: " + env.getObject(i).getMass() + "kg and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY() + ")");
             }
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }
@@ -466,6 +482,11 @@ public class Sim {
 
         public Builder setElastic(boolean elastic){
             this.elastic = elastic;
+            return this;
+        }
+
+        public Builder setDamper(double damper){
+            this.damper = damper;
             return this;
         }
 

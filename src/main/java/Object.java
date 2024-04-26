@@ -7,17 +7,17 @@ public class Object {
 
     private double radius;
     private Velocity velocity;
-    private Velocity startVelocity;
+
     private double mass;
     private Location location;
-    private Location startLocation;
+
 
     public Object(double radius, Velocity velocity, double mass, Location location) {
         this.velocity = velocity;
-        this.startVelocity = new Velocity(velocity.getX(), velocity.getY());
+
         this.mass = mass;
         this.location = location;
-        this.startLocation = new Location(location.getX(), location.getY());
+
         this.radius = radius;
     }
 
@@ -37,10 +37,6 @@ public class Object {
         return velocity;
     }
 
-    public Velocity getStartVelocity() {
-        return startVelocity;
-    }
-
     public void setVelocity(Velocity velocity) {
         this.velocity = velocity;
     }
@@ -53,7 +49,6 @@ public class Object {
         return location;
     }
 
-    public Location getStartLocation() { return startLocation; }
 
     public boolean isValidObj() {
         return radius != 0 && mass != 0;

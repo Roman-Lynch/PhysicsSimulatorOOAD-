@@ -28,6 +28,31 @@ public class PhysicsTest
     }
 
     @Test
+    public void BorderTest()
+    {
+        int height = 40;
+        int width = 50;
+
+        double mass1 = 1; // kg
+        Location location1 = new Location(20, 0); // meters
+        Velocity velocity1 = new Velocity(0, 0);
+
+        Object objOne = Object.newBuilder()
+                .radius(2)
+                .mass(mass1)
+                .velocity(velocity1)
+                .location(location1)
+                .create();
+
+        Sim runSim = Sim.newBuilder()
+                .createAndAddMars(height, width,1)
+                .addObjects(objOne)
+                .setTimeSteps(0.0001)
+                .setDuration(20)
+                .run();
+
+    }
+    @Test
     public void TestSim()
     {
         int height = 40;

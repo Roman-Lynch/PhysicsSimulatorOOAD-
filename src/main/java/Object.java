@@ -2,12 +2,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Object {
 
     private double radius;
     private Velocity velocity;
 
+    private List<Object> stuckObjects = new ArrayList<>();
     private double mass;
     private Location location;
 
@@ -21,8 +24,24 @@ public class Object {
         this.radius = radius;
     }
 
+    public List<Object> getStuckObjects() {
+        return stuckObjects;
+    }
+
+    public Object getStuckObject(int index) {
+        return stuckObjects.get(index);
+    }
+
+    public void addStuckObject(Object obj) {
+        stuckObjects.add(obj);
+    }
+
     public void setLocation(Location point) {
         location = point;
+    }
+
+    public void setMass(double mass){
+        this.mass = mass;
     }
 
     public double getRadius() {

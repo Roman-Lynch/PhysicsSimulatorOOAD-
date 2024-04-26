@@ -52,7 +52,7 @@ public class Sim {
         private double timmer;
 
 
-        private boolean elasticCollisions = true;
+        private boolean elastic = true;
         public Environment env;
         private double timeSteps;
         private double duration;
@@ -242,8 +242,10 @@ public class Sim {
             if (env.getObjects().size() > 1) {
                 for (int i = 0; i < env.getObjects().size(); i++) {
                     for (int j = i + 1; j < env.getObjects().size(); j++){
-                        if (checkOverlap(nextLocation(env.getObject(i), false),
+                        if (checkOverlap(env.getObject(i),
+                                         nextLocation(env.getObject(i), false),
                                                       env.getObject(i).getRadius(),
+                                         env.getObject(j),
                                          nextLocation(env.getObject(j),  false),
                                                       env.getObject(j).getRadius())) {
 
@@ -254,13 +256,26 @@ public class Sim {
             }
         }
 
-        boolean checkOverlap(Location obj1, double R1, Location obj2, double R2) {
+        boolean checkOverlap(Object object1, Location obj1, double R1, Object object2, Location obj2, double R2) {
 
-            double dx = obj1.getX() - obj2.getX();
-            double dy = obj1.getY() - obj2.getY();
-            double distance = Math.sqrt(dx * dx + dy * dy);
+            boolean alreadyStuck = false;
 
-            return distance <= (R1 + R2);
+            for(int i = 0; i < object1.getStuckObjects().size(); i++){
+                if(object1.getStuckObject(i) == object2){
+                    alreadyStuck = true;
+                }
+            }
+
+            if(alreadyStuck){
+                return false;
+            }
+            else {
+                double dx = obj1.getX() - obj2.getX();
+                double dy = obj1.getY() - obj2.getY();
+                double distance = Math.sqrt(dx * dx + dy * dy);
+
+                return distance <= (R1 + R2);
+            }
         }
 
         boolean checkWallOverlap(Location obj, double radius, Environment envior) {
@@ -291,25 +306,51 @@ public class Sim {
 
 //            logger.info("obj1 Velocity x: " + obj1.getVelocity().getX());
 //            logger.info("obj2 Velocity x: " + obj2.getVelocity().getX());
-            double mass1 = obj1.getMass();
-            double mass2 = obj2.getMass();
 
-            double vel1x = obj1.getVelocity().getX();
-            double vel2x = obj2.getVelocity().getX();
+                double mass1 = obj1.getMass();
+                double mass2 = obj2.getMass();
 
-            double vel1y = obj1.getVelocity().getY();
-            double vel2y = obj2.getVelocity().getY();
+                double vel1x = obj1.getVelocity().getX();
+                double vel2x = obj2.getVelocity().getX();
 
-            double vel1xf = (((mass1 - mass2) / (mass1 + mass2)) * vel1x) + (((2 * mass2) / (mass1 + mass2)) * vel2x);
-            double vel2xf = (((2 * mass1) / (mass1 + mass2)) * vel1x) - (((mass1 - mass2) / (mass1 + mass2)) * vel2x);
+                double vel1y = obj1.getVelocity().getY();
+                double vel2y = obj2.getVelocity().getY();
 
-            double vel1yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
-            double vel2yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
+            if(elastic) {
+                double vel1xf = (((mass1 - mass2) / (mass1 + mass2)) * vel1x) + (((2 * mass2) / (mass1 + mass2)) * vel2x);
+                double vel2xf = (((2 * mass1) / (mass1 + mass2)) * vel1x) - (((mass1 - mass2) / (mass1 + mass2)) * vel2x);
 
-            sim.collisionDetect = true;
+                double vel1yf = (((mass1 - mass2) / (mass1 + mass2)) * vel1y) + (((2 * mass2) / (mass1 + mass2)) * vel2y);
+                double vel2yf = (((2 * mass1) / (mass1 + mass2)) * vel1y) - (((mass1 - mass2) / (mass1 + mass2)) * vel2y);
 
-            obj1.setVelocity(new Velocity(vel1xf, vel1yf));
-            obj2.setVelocity(new Velocity(vel2xf, vel2yf));
+                sim.collisionDetect = true;
+
+                obj1.setVelocity(new Velocity(vel1xf, vel1yf));
+                obj2.setVelocity(new Velocity(vel2xf, vel2yf));
+            }
+            else {
+                double vel1xf = (((mass1*vel1x)+(mass2*vel2x))/(mass1+mass2));
+                double vel1yf = (((mass1*vel1y)+(mass2*vel2y))/(mass1+mass2));
+
+                sim.collisionDetect = true;
+
+                obj1.setVelocity(new Velocity(vel1xf, vel1yf));
+                obj2.setVelocity(new Velocity(vel1xf, vel1yf));
+
+                obj1.setMass((mass1+mass2));
+                obj2.setMass((mass1+mass2));
+
+                obj1.addStuckObject(obj2);
+                obj2.addStuckObject(obj1);
+
+                for (Object stuckObject : obj2.getStuckObjects()) {
+                    obj1.addStuckObject(stuckObject);
+                }
+
+                for (Object stuckObject : obj1.getStuckObjects()) {
+                    obj2.addStuckObject(stuckObject);
+                }
+            }
 
 //            logger.info("obj1 Velocity x: " + obj1.getVelocity().getX());
 //            logger.info("obj2 Velocity x: " + obj2.getVelocity().getX());

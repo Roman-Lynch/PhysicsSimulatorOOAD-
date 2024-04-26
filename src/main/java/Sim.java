@@ -457,5 +457,10 @@ public class Sim {
             return this;
         }
 
+        public Builder setElastic(boolean elastic){
+            this.elastic = elastic;
+            return this;
+        }
+
     }
 }

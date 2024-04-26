@@ -405,8 +405,8 @@ public class Sim {
             double velObjX = obj.getVelocity().getX();
             double velObjY = obj.getVelocity().getY();
 
-            double v1xf = velObjX * damper;
-            double v1yf = velObjY * damper;
+            velObjX = velObjX * damper;
+            velObjY = velObjY * damper;
 
 
             Location locObj = obj.getLocation();

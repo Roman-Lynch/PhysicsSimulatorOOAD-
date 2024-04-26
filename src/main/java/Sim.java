@@ -282,7 +282,7 @@ public class Sim {
 
         private void displayObjects() {
             for (int i = 0; i < env.getObjects().size(); i++) {
-                logger.info("Object " + (i + 1) + " has horizonal velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY());
+                logger.info("Object " + (i + 1) + " has velocity: [" + env.getObject(i).getVelocity().getX() + ", " + env.getObject(i).getVelocity().getY() + "] and mass: " + env.getObject(i).getMass() + "kg and position: (" + env.getObject(i).getLocation().getX() + "," + env.getObject(i).getLocation().getY());
             }
             sim.display(env, (int)env.getHeight(), (int)env.getWidth());
         }

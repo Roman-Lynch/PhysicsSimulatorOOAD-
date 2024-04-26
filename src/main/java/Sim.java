@@ -343,12 +343,19 @@ public class Sim {
                 obj1.addStuckObject(obj2);
                 obj2.addStuckObject(obj1);
 
+
+
                 for (Object stuckObject : obj2.getStuckObjects()) {
                     obj1.addStuckObject(stuckObject);
                 }
 
                 for (Object stuckObject : obj1.getStuckObjects()) {
                     obj2.addStuckObject(stuckObject);
+                }
+
+                for (Object stuckObject : obj1.getStuckObjects()) {
+                    stuckObject.setMass(obj1.getMass());
+                    stuckObject.setVelocity(obj1.getVelocity());
                 }
             }
 

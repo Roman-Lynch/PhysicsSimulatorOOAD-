@@ -55,15 +55,15 @@ public class PhysicsTest
     @Test
     public void TestSim()
     {
-        int height = 40;
+        int height = 50;
         int width = 50;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(20, 0); // meters
+        Location location1 = new Location(10, -10); // meters
         Velocity velocity1 = new Velocity(1, 0);
 
         double mass2 = 2; // kg
-        Location location2 = new Location(28, 0);
+        Location location2 = new Location(16, -10);
         Velocity velocity2 = new Velocity(-1, 0);
 
         Object objOne = Object.newBuilder()
@@ -81,7 +81,7 @@ public class PhysicsTest
                 .create();
 
         Sim runSim = Sim.newBuilder()
-                .createAndAddMars(height, width,1)
+                .createAndAddMoon(height, width,1)
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
@@ -125,7 +125,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.2)
                 .run();
 
         double correctY = 0 - (0.5 * 9.81 * pow(duration, 2));

@@ -4,34 +4,33 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 
 public class Object {
-    private double height;
-    private double width;
+
+    private double radius;
     private Velocity velocity;
     private Velocity startVelocity;
     private double mass;
     private Location location;
     private Location startLocation;
 
-    public Object(double height, double width, Velocity velocity, double mass, Location location) {
-        this.height = height;
-        this.width = width;
+    public Object(double radius, Velocity velocity, double mass, Location location) {
         this.velocity = velocity;
         this.startVelocity = new Velocity(velocity.getX(), velocity.getY());
         this.mass = mass;
         this.location = location;
         this.startLocation = new Location(location.getX(), location.getY());
+        this.radius = radius;
     }
 
     public void setLocation(Location point) {
         location = point;
     }
 
-    public double getHeight() {
-        return height;
+    public double getRadius() {
+        return radius;
     }
 
-    public double getWidth() {
-        return width;
+    public void setRadius(double r){
+        this.radius = r;
     }
 
     public Velocity getVelocity() {
@@ -57,7 +56,7 @@ public class Object {
     public Location getStartLocation() { return startLocation; }
 
     public boolean isValidObj() {
-        return height != 0 && width != 0 && mass != 0;
+        return radius != 0 && mass != 0;
     }
 
     public static Builder newBuilder() {
@@ -65,16 +64,14 @@ public class Object {
     }
 
     public static class Builder {
-        private double height;
-        private double width;
+        private double radius;
         private Velocity velocity;
         private double mass;
         private Location location;
 
 
-        public Builder shape(double height, double width) {
-            this.height = height;
-            this.width = width;
+        public Builder radius(double r) {
+            this.radius = r;
             return this;
         }
 
@@ -94,7 +91,7 @@ public class Object {
         }
 
         public Object create() {
-            return new Object(height, width, velocity, mass, location);
+            return new Object(radius, velocity, mass, location);
         }
     }
 }

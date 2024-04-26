@@ -37,6 +37,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+=======
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Gradle.PhysicsTest.BorderTest.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PhysicsTest.TestSim.executor&quot;: &quot;Run&quot;,
+    &quot;Gradle.PhysicsTest.TestValidObj.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;
+  }
+}</component>
+>>>>>>> ed237f4534f2674850500a38b49300e961728366
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\steve\IdeaProjects\PhysicsSimulatorOOAD-" />

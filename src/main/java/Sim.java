@@ -3,8 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import static java.lang.Math.pow;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Sim implements IObservable{
 
@@ -49,6 +51,8 @@ public class Sim implements IObservable{
         private Sim sim = new Sim();
 
         private double timmer;
+
+        private GUI gui;
 
         private double damper = 1;
 
@@ -217,6 +221,25 @@ public class Sim implements IObservable{
             return this;
         }
         public Sim run() {
+            AtomicBoolean guiCreated = new AtomicBoolean(false);
+
+            // Create GUI object in a separate thread
+            Thread guiThread = new Thread(() -> {
+                gui = new GUI(env);
+                logger.info("GUI window opened");
+                guiCreated.set(true);
+            });
+            guiThread.start();
+
+            // Wait until the GUI has been created
+            while (!guiCreated.get()) {
+                try {
+                    Thread.sleep(10000); // Sleep for a short duration
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
             logger.info("Running");
             for (double t = 0; t <= duration; t += timeSteps) {
                 timmer = t;

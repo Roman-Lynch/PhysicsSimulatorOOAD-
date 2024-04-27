@@ -1,8 +1,10 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class GUI extends JFrame implements GUIObserver {
+public class GUI extends JFrame {
     private CirclePanel circlePanel;
     private ArrayList<Circle> circles;
     public GUI() {
@@ -46,9 +48,17 @@ public class GUI extends JFrame implements GUIObserver {
         frame.setResizable(false); // Disable frame resizing
         frame.pack();
         frame.setVisible(true);
+
+        Timer closeTimer = new Timer();
+        closeTimer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+                frame.dispose();
+            }
+        }, 10000); // Close after 10 seconds
     }
 
-    private void updateCirclePositions(Location location, Location newLocation) {
+    public void updateCirclePositions(Location location, Location newLocation) {
         // Update position of each circle
         for (Circle circle : circles) {
             int dx = (int)(newLocation.getX() - location.getX());
@@ -64,13 +74,8 @@ public class GUI extends JFrame implements GUIObserver {
         GUI gui = new GUI();
 
         // Start a timer to update circle positions
-        Timer timer = new Timer(50, e -> gui.updateCirclePositions());
-        timer.start();;
-    }
-
-    @Override
-    public void update(Location newLocation, double timestep, GUI gui) {
-        // Not implemented for this example
+        //Timer timer = new Timer(50, e -> gui.updateCirclePositions());
+        //timer.start();;
     }
 
     public CirclePanel getCirclePanel() {

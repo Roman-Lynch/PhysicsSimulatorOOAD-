@@ -246,7 +246,7 @@ public class Sim implements IObservable{
         }
 
         public Sim executeGUI() {
-            GUI gui = new GUI(env, positions, (long)timeSteps);
+            GUI gui = new GUI(env, positions, (long)timeSteps, duration);
             return sim;
         }
 

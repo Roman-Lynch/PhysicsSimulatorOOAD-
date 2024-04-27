@@ -65,7 +65,7 @@ public class GUI extends JFrame {
                 newLocations.add(objectPositions.get(x));
             }
 
-            for (int steps = 0; steps < 80; steps ++) {
+            for (int steps = 0; steps < 100; steps ++) {
                 try {
                     Thread.sleep((long) (timeDelay * 1000));
                 } catch (InterruptedException e) {
@@ -181,10 +181,5 @@ class Circle {
 
     public void setY(int yCord) {
         this.y = yCord;
-    }
-
-    public void move(int dx, int dy) {
-        x += dx;
-        y += dy;
     }
 }

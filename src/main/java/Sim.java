@@ -1,15 +1,14 @@
 import java.awt.*;
-import java.util.List;
-import java.util.ArrayList;
+import java.util.*;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import static java.lang.Math.pow;
-import java.util.Timer;
-import java.util.TimerTask;
+
+import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Sim implements IObservable{
-
     private static final Logger logger = LoggerFactory.getLogger(Sim.class);
     private boolean collisionDetect = false;
 
@@ -45,8 +44,8 @@ public class Sim implements IObservable{
         return new Builder();
     }
 
-
     public static class Builder {
+        private ArrayList<Location> positions = new ArrayList<Location>();
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
 
@@ -220,31 +219,18 @@ public class Sim implements IObservable{
             env.addObject(obj);
             return this;
         }
-        public Sim run() {
-            AtomicBoolean guiCreated = new AtomicBoolean(false);
-
-            // Create GUI object in a separate thread
-            Thread guiThread = new Thread(() -> {
-                gui = new GUI(env);
-                logger.info("GUI window opened");
-                guiCreated.set(true);
-            });
-            guiThread.start();
-
-            // Wait until the GUI has been created
-            while (!guiCreated.get()) {
-                try {
-                    Thread.sleep(10000); // Sleep for a short duration
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
+        public Builder run() {
             logger.info("Running");
             for (double t = 0; t <= duration; t += timeSteps) {
                 timmer = t;
 
                 moveObjects(t);
+
+                // Update the positions
+                for (Object object : env.getObjects()){
+                    positions.add(object.getLocation());
+                }
+
                 checkCollisions(t);
                 checkWallCollisions(t);
                 if (Math.abs(t - Math.round(t)) < 0.000001) {
@@ -256,6 +242,11 @@ public class Sim implements IObservable{
 
                 }
             }
+            return this;
+        }
+
+        public Sim executeGUI() {
+            GUI gui = new GUI(env, positions, (long)timeSteps);
             return sim;
         }
 

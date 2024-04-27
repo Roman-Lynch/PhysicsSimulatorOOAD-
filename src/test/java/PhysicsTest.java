@@ -48,14 +48,15 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .setTimeSteps(0.0001)
                 .setDuration(20)
-                .run();
+                .run()
+                .executeGUI();
 
         assert(objOne.getLocation().getX() == 20.0);
         assert(Math.round(objOne.getLocation().getY())== -21.0);
     }
 
     @Test
-    public void RightWallBorderTest()
+    public void LeftWallBorderTest()
     {
         int height = 40;
         int width = 50;
@@ -76,7 +77,8 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .setTimeSteps(0.0001)
                 .setDuration(7)
-                .run();
+                .run()
+                .executeGUI();
 
         assert(Math.round(objOne.getLocation().getX()) == 42.0);
         assert(Math.round(objOne.getLocation().getY())== -21.0);
@@ -118,7 +120,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
                 .setDuration(6)
-                .run();
+                .run()
+                .executeGUI();
 
 //        assert(runSim.collisionDetected() == true);
     }
@@ -158,7 +161,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.2)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 9.81 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -204,7 +208,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -247,7 +252,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -290,7 +296,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 274 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -333,7 +340,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 10.44 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -376,7 +384,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 11.15 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -419,7 +428,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 1.62 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -462,7 +472,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 3.7 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -505,7 +516,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 24.79 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();
@@ -548,7 +560,8 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
-                .run();
+                .run()
+                .executeGUI();
 
         double correctY = 0 - (0.5 * 99999999.99999 * pow(duration, 2));
         double finalY = objOne.getLocation().getY();

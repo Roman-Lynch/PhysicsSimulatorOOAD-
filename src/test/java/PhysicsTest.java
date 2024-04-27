@@ -21,6 +21,7 @@ public class PhysicsTest
                 .mass(mass)
                 .velocity(velocity)
                 .location(location)
+                .color("B")
                 .create();
 
         assertTrue(obj.isValidObj());
@@ -41,6 +42,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -70,6 +72,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -105,6 +108,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -112,6 +116,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -119,7 +124,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
-                .setDuration(6)
+                .setDuration(20)
                 .run()
                 .executeGUI();
 
@@ -146,6 +151,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -153,6 +159,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("G")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -193,6 +200,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -200,6 +208,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("Y")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -237,6 +246,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -244,6 +254,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -281,6 +292,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -288,6 +300,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("P")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -325,6 +338,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -332,6 +346,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -369,6 +384,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -376,6 +392,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("G")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -413,6 +430,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -420,6 +438,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -457,6 +476,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("G")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -464,6 +484,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -501,6 +522,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("R")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -508,6 +530,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
@@ -545,6 +568,7 @@ public class PhysicsTest
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("Y")
                 .create();
 
         Object objTwo = Object.newBuilder()
@@ -552,6 +576,7 @@ public class PhysicsTest
                 .mass(mass2)
                 .velocity(velocity2)
                 .location(location2)
+                .color("R")
                 .create();
 
         Sim runSim = Sim.newBuilder()

@@ -10,21 +10,35 @@ public class GUI extends JFrame {
 
     JFrame frame = new JFrame();
 
-    public GUI(Environment enviro, ArrayList<Location> objectPositions, long timeDelay) {
+    public GUI(Environment enviro, ArrayList<Location> objectPositions, double timeDelay, double duration) {
 
+        // Add 5 seconds to the duration
+        duration += 5;
         circles = new ArrayList<>();
 
         // Find number of objects in environment
         int numObs = enviro.getObjects().size();
         // Put objects with initial positions in
         for (Object object : enviro.getObjects()){
-            circles.add(new Circle(((int)object.getLocation().getX()*10), -((int)object.getLocation().getY()*10), ((int)object.getRadius()*10), Color.RED));
+            if (object.getColor().equals("R")) {
+                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.RED));
+            } else if (object.getColor().equals("G")) {
+                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.GREEN));
+            } else if (object.getColor().equals("B")) {
+                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.BLUE));
+            } else if (object.getColor().equals("P")) {
+                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.PINK));
+            } else if (object.getColor().equals("Y")) {
+                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.YELLOW));
+            } else {
+                throw new IllegalArgumentException("Object color must be R,G,B,P, or Y. No other inputs expected.");
+            }
         }
 
         circlePanel = new CirclePanel(circles);
 
         // Set preferred size of the circlePanel to the size of the environment
-        circlePanel.setPreferredSize(new Dimension(((int)enviro.getWidth()*10), ((int)enviro.getHeight())*10));
+        circlePanel.setPreferredSize(new Dimension((int)(enviro.getWidth()*10), (int)(enviro.getHeight())*10));
 
         frame.add(circlePanel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -39,7 +53,7 @@ public class GUI extends JFrame {
             public void run() {
                 frame.dispose();
             }
-        }, 10000); // Close after 10 seconds
+        }, ((int)(duration)*1000));
 
         Timer timer = new Timer();
         // Run the sim, updating the circles positions each time
@@ -51,29 +65,14 @@ public class GUI extends JFrame {
                 newLocations.add(objectPositions.get(x));
             }
 
-            updateCirclePositions(newLocations);
-            try {
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-                Thread.sleep(timeDelay*1000000000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            for (int steps = 0; steps < 80; steps ++) {
+                try {
+                    Thread.sleep((long) (timeDelay * 1000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+            updateCirclePositions(newLocations);
         }
     }
 
@@ -81,33 +80,35 @@ public class GUI extends JFrame {
         for (int i = 0; i < circles.size(); i++) {
             Circle circle = circles.get(i);
             Location newLocation = newLocations.get(i);
-            circle.setX((int)newLocation.getX()*10);
-            circle.setY(-(int)newLocation.getY()*10);
+            circle.setX((int)(newLocation.getX()*10));
+            circle.setY(-(int)(newLocation.getY()*10));
         }
         circlePanel.repaint();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         int height = 40;
         int width = 50;
 
         double mass1 = 1; // kg
         Location location1 = new Location(20, -20); // meters
-        Velocity velocity1 = new Velocity(-10, 0);
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(2)
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
+                .color("B")
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddMars(height, width,1)
                 .addObjects(objOne)
                 .setTimeSteps(0.0001)
-                .setDuration(7)
+                .setDuration(20)
+                .setDamper(0.8)
                 .run()
                 .executeGUI();
 

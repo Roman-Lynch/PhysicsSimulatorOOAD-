@@ -416,7 +416,7 @@ public class Sim implements IObservable{
         private void handleWallCollision(Object obj, Environment envior) {
             //logger.info("obj1 Velocity x: " + obj.getVelocity().getX());
             //logger.info("obj Velocity y: " + obj.getVelocity().getY());
-
+            logger.info("Specifcally a wall one.");
             double velObjX = obj.getVelocity().getX();
             double velObjY = obj.getVelocity().getY();
 
@@ -432,8 +432,14 @@ public class Sim implements IObservable{
             //logger.info("xLocationOfWall: " + xLocationOfFarWall);
             if ((locObj.getX() + radius) >= xLocationOfFarWall) {
                 obj.setVelocity(new Velocity(-velObjX, velObjY));
+                for (Object stuckObject : obj.getStuckObjects()) {
+                    stuckObject.setVelocity(obj.getVelocity());
+                }
             } else if ((locObj.getX() - radius) <= 0) {
                 obj.setVelocity(new Velocity(-velObjX, velObjY));
+                for (Object stuckObject : obj.getStuckObjects()) {
+                    stuckObject.setVelocity(obj.getVelocity());
+                }
             }
 
             // Check Top Borders
@@ -441,8 +447,14 @@ public class Sim implements IObservable{
             //logger.info("yLocationOfWall: " + yLocationOfWall);
             if ((locObj.getY() + radius) >= 0) {
                 obj.setVelocity(new Velocity(velObjX, -velObjY));
+                for (Object stuckObject : obj.getStuckObjects()) {
+                    stuckObject.setVelocity(obj.getVelocity());
+                }
             } else if ((locObj.getY() - radius) <= yLocationOfWall) {
                 obj.setVelocity(new Velocity(velObjX, -velObjY));
+                for (Object stuckObject : obj.getStuckObjects()) {
+                    stuckObject.setVelocity(obj.getVelocity());
+                }
             }
 
             sim.collisionDetect = true;

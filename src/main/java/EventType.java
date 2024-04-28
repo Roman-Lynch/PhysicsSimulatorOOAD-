@@ -3,6 +3,7 @@ public enum EventType {
     EndSim,
     SecondPassed,
     ObjectCollision,
+    COLLISION,
     WallCollision,
     All
 }

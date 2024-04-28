@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.text.DecimalFormat;
@@ -10,7 +11,9 @@ public class GUI extends JFrame {
     private ArrayList<Circle> circles;
     JFrame frame = new JFrame();
 
-    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity) {
+    AudibleObserver observer = new AudibleObserver(null, List.of(EventType.COLLISION), 0);
+
+    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity) {
         // Add 5 seconds to the duration
         duration += 5;
         circles = new ArrayList<>();
@@ -52,6 +55,10 @@ public class GUI extends JFrame {
             for (int x = i; x<(i + numObs); x++){
                 newLocations.add(objectPositions.get(x));
                 newVelocities.add(objectVelocities.get(x));
+            }
+
+            if (CollisionCheck.get(i)) {
+                observer.update(EventType.COLLISION, "BONK");
             }
 
             for (int steps = 0; steps < 100; steps ++) {

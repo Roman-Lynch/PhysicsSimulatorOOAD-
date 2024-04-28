@@ -8,11 +8,9 @@ import java.text.DecimalFormat;
 public class GUI extends JFrame {
     private CirclePanel circlePanel;
     private ArrayList<Circle> circles;
-
     JFrame frame = new JFrame();
 
-    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Velocity> objectVelocities, double timeDelay, double duration) {
-
+    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity) {
         // Add 5 seconds to the duration
         duration += 5;
         circles = new ArrayList<>();
@@ -24,7 +22,7 @@ public class GUI extends JFrame {
             circles.add(new Circle(((int) (object.getLocation().getX()) * 10), -(int) (object.getLocation().getY() * 10), (int) (object.getRadius() * 10), object.getColor()));
         }
 
-        circlePanel = new CirclePanel(circles);
+        circlePanel = new CirclePanel(circles, showVelocity);
 
         // Set preferred size of the circlePanel to the size of the environment
         circlePanel.setPreferredSize(new Dimension((int)(enviro.getWidth()*10), (int)(enviro.getHeight())*10));
@@ -111,10 +109,12 @@ public class GUI extends JFrame {
 }
 
 class CirclePanel extends JPanel {
+    private Boolean showVel = false;
     private ArrayList<Circle> circles;
 
-    public CirclePanel(ArrayList<Circle> circles) {
+    public CirclePanel(ArrayList<Circle> circles, Boolean showVelocity) {
         this.circles = circles;
+        this.showVel = showVelocity;
     }
 
     @Override
@@ -127,10 +127,12 @@ class CirclePanel extends JPanel {
             g.setColor(circle.getColor());
             g.fillOval(x, y, size, size);
             g.setColor(Color.BLACK); // Set the color for velocity text
-            DecimalFormat df = new DecimalFormat("#." + "0".repeat(2)); // Create DecimalFormat with specified precision
-            String roundedXVelocity = df.format(circle.getVelocity().getX());
-            String roundedYVelocity = df.format(circle.getVelocity().getY());
-            g.drawString("Velocity: " + roundedXVelocity + ", " + roundedYVelocity, circle.getX(), circle.getY() + circle.getRadius() + 12); // Draw velocity text
+            if (showVel) {
+                DecimalFormat df = new DecimalFormat("#." + "0".repeat(2)); // Create DecimalFormat with specified precision
+                String roundedXVelocity = df.format(circle.getVelocity().getX());
+                String roundedYVelocity = df.format(circle.getVelocity().getY());
+                g.drawString("Velocity: " + roundedXVelocity + ", " + roundedYVelocity, circle.getX(), circle.getY() + circle.getRadius() + 12);
+            }
         }
     }
 

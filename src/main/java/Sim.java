@@ -46,6 +46,7 @@ public class Sim implements IObservable{
 
     public static class Builder {
         private ArrayList<Location> positions = new ArrayList<Location>();
+        private ArrayList<Velocity> objectVelocities = new ArrayList<Velocity>();
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
 
@@ -61,6 +62,7 @@ public class Sim implements IObservable{
         public Environment env;
         private double timeSteps;
         private double duration;
+        private Boolean showVel;
 
         public Builder createAndAddMars(int height, int width, double wallElasticity) {
             if (height <= 0) {
@@ -221,6 +223,11 @@ public class Sim implements IObservable{
             env.addObject(obj);
             return this;
         }
+
+        public Builder showVelocityInGUI(Boolean bool) {
+            showVel = bool;
+            return this;
+        }
         public Builder run() {
             logger.info("Running");
             for (double t = 0; t <= duration; t += timeSteps) {
@@ -231,6 +238,11 @@ public class Sim implements IObservable{
                 // Update the positions
                 for (Object object : env.getObjects()){
                     positions.add(object.getLocation());
+                }
+
+                // Update the velocities
+                for (Object object : env.getObjects()){
+                    objectVelocities.add(object.getVelocity());
                 }
 
                 checkCollisions(t);
@@ -248,7 +260,7 @@ public class Sim implements IObservable{
         }
 
         public Sim executeGUI() {
-            GUI gui = new GUI(env, positions, (long)timeSteps, duration);
+            GUI gui = new GUI(env, positions, objectVelocities, (long)timeSteps, duration, showVel);
             return sim;
         }
 

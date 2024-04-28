@@ -50,6 +50,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .setTimeSteps(0.0001)
                 .setDuration(20)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -80,6 +81,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .setTimeSteps(0.0001)
                 .setDuration(7)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -125,6 +127,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
                 .setDuration(20)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -195,6 +198,7 @@ public class PhysicsTest
                 .addObjects(objFour)
                 .setTimeSteps(0.0001)
                 .setDuration(30)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -238,6 +242,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.2)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -287,6 +292,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -333,6 +339,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -379,6 +386,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.0001)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -425,6 +433,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -471,6 +480,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -517,6 +527,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -563,6 +574,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -609,6 +621,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
@@ -655,6 +668,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.02)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 

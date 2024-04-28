@@ -51,6 +51,7 @@ public class PhysicsTest
                 .setTimeSteps(0.0001)
                 .setDuration(20)
                 .showVelocityInGUI(false)
+                .speak(false)
                 .run()
                 .executeGUI();
 
@@ -82,6 +83,7 @@ public class PhysicsTest
                 .setTimeSteps(0.0001)
                 .setDuration(7)
                 .showVelocityInGUI(false)
+                .speak(true)
                 .run()
                 .executeGUI();
 

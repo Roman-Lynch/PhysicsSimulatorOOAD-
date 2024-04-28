@@ -13,7 +13,7 @@ public class GUI extends JFrame {
 
     AudibleObserver observer = new AudibleObserver(null, List.of(EventType.COLLISION), 0);
 
-    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity) {
+    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity, Boolean speak) {
         // Add 5 seconds to the duration
         duration += 5;
         circles = new ArrayList<>();
@@ -57,7 +57,7 @@ public class GUI extends JFrame {
                 newVelocities.add(objectVelocities.get(x));
             }
 
-            if (CollisionCheck.get(i)) {
+            if (CollisionCheck.get(i) && speak) {
                 observer.update(EventType.COLLISION, "BONK");
             }
 

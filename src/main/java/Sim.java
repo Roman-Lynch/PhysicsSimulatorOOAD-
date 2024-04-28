@@ -64,6 +64,7 @@ public class Sim implements IObservable{
         private double timeSteps;
         private double duration;
         private Boolean showVel;
+        private Boolean speakVar = false;
 
         public Builder createAndAddMars(int height, int width, double wallElasticity) {
             if (height <= 0) {
@@ -229,6 +230,12 @@ public class Sim implements IObservable{
             showVel = bool;
             return this;
         }
+
+        public Builder speak(Boolean speakVal) {
+            this.speakVar = speakVal;
+            return this;
+        }
+
         public Builder run() {
             logger.info("Running");
             for (double t = 0; t <= duration; t += timeSteps) {
@@ -274,7 +281,7 @@ public class Sim implements IObservable{
         }
 
         public Sim executeGUI() {
-            GUI gui = new GUI(env, positions, messages, objectVelocities, (long)timeSteps, duration, showVel);
+            GUI gui = new GUI(env, positions, messages, objectVelocities, (long)timeSteps, duration, showVel, speakVar);
             return sim;
         }
 

@@ -253,8 +253,14 @@ public class Sim implements IObservable{
                         logger.info("A collision has occurred!");
                         sim.collisionDetect = false;
                         messages.add(true);
+
+                        for (int i = 1; i < env.getObjects().size(); i ++){
+                            messages.add(false);
+                        }
                     } else {
-                        messages.add(false);
+                        for (Object object : env.getObjects()){
+                            messages.add(false);
+                        }
                     }
                     displayObjects();
 

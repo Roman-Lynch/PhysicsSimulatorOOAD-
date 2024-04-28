@@ -19,20 +19,8 @@ public class GUI extends JFrame {
         // Find number of objects in environment
         int numObs = enviro.getObjects().size();
         // Put objects with initial positions in
-        for (Object object : enviro.getObjects()){
-            if (object.getColor().equals("R")) {
-                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.RED));
-            } else if (object.getColor().equals("G")) {
-                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.GREEN));
-            } else if (object.getColor().equals("B")) {
-                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.BLUE));
-            } else if (object.getColor().equals("P")) {
-                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.PINK));
-            } else if (object.getColor().equals("Y")) {
-                circles.add(new Circle(((int)(object.getLocation().getX())*10), -(int)(object.getLocation().getY()*10), (int)(object.getRadius()*10), Color.YELLOW));
-            } else {
-                throw new IllegalArgumentException("Object color must be R,G,B,P, or Y. No other inputs expected.");
-            }
+        for (Object object : enviro.getObjects()) {
+            circles.add(new Circle(((int) (object.getLocation().getX()) * 10), -(int) (object.getLocation().getY() * 10), (int) (object.getRadius() * 10), object.getColor()));
         }
 
         circlePanel = new CirclePanel(circles);
@@ -100,7 +88,7 @@ public class GUI extends JFrame {
                 .mass(mass1)
                 .velocity(velocity1)
                 .location(location1)
-                .color("B")
+                .color(Color.RED)
                 .create();
 
         Sim runSim = Sim.newBuilder()

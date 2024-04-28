@@ -13,10 +13,10 @@ public class Object {
     private List<Object> stuckObjects = new ArrayList<>();
     private double mass;
     private Location location;
-    private String color;
+    private Color color;
 
 
-    public Object(double radius, Velocity velocity, double mass, Location location, String colorChoice) {
+    public Object(double radius, Velocity velocity, double mass, Location location, Color colorChoice) {
         this.velocity = velocity;
 
         this.mass = mass;
@@ -50,7 +50,7 @@ public class Object {
         return radius;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
@@ -84,7 +84,7 @@ public class Object {
         private Velocity velocity;
         private double mass;
         private Location location;
-        private String color;
+        private Color color;
 
         public Builder radius(double r) {
             this.radius = r;
@@ -106,7 +106,7 @@ public class Object {
             return this;
         }
 
-        public Builder color(String color) {
+        public Builder color(Color color) {
             this.color = color;
             return this;
         }

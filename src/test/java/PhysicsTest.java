@@ -308,7 +308,7 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
                 .run()
                 .executeGUI();
 

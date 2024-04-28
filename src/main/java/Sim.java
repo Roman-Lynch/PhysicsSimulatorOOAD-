@@ -257,6 +257,10 @@ public class Sim implements IObservable{
                         for (int i = 1; i < env.getObjects().size(); i ++){
                             messages.add(false);
                         }
+                    } else {
+                        for (Object object : env.getObjects()) {
+                            messages.add(false);
+                        }
                     }
                     displayObjects();
 

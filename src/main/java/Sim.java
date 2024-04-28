@@ -511,7 +511,7 @@ public class Sim implements IObservable{
             double yAcceleration = 0;
 
             for (Object obj2: env.getObjects()){
-                if (obj2 != obj) {
+                if (obj2 != obj && !obj.getStuckObjects().contains(obj2)) {
                     double dx = obj.getLocation().getX() - obj2.getLocation().getX();
                     double dy = obj.getLocation().getY() - obj2.getLocation().getY();
                     double distance = Math.sqrt(dx * dx + dy * dy);

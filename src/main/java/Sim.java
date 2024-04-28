@@ -51,6 +51,8 @@ public class Sim implements IObservable{
 
         private double timmer;
 
+        private boolean isOrbital = false;
+
         private GUI gui;
 
         private double damper = 1;
@@ -447,18 +449,109 @@ public class Sim implements IObservable{
         }
 
         private Location nextLocation(Object obj , boolean velocity) {
-            double xInitPos = obj.getLocation().getX();
-            double yInitPos = obj.getLocation().getY();
 
-            double xInitVelocity = obj.getVelocity().getX();
-            double yInitVelocity = obj.getVelocity().getY();
+            if(!isOrbital) {
+                double xInitPos = obj.getLocation().getX();
+                double yInitPos = obj.getLocation().getY();
+
+                double xInitVelocity = obj.getVelocity().getX();
+                double yInitVelocity = obj.getVelocity().getY();
 //            if (velocity) {
 //                logger.info("Object " + obj);
 //                logger.info("Velocity X: " + xInitVelocity);
 //                logger.info("Velocity Y: " + yInitVelocity);
 //            }
+                double xAcceleration = 0;
+                double yAcceleration = -env.getGravity();
+
+                double xFinalPos = xInitPos + (xInitVelocity * timeSteps) + (0.5 * xAcceleration * pow(timeSteps, 2));
+                double yFinalPos = yInitPos + (yInitVelocity * timeSteps) + (0.5 * yAcceleration * pow(timeSteps, 2));
+//            if (velocity) {
+//                logger.info("position X: " + xFinalPos);
+//                logger.info("position Y: " + yFinalPos);
+//                logger.info("");
+//            }
+                double xVelFinal = xInitVelocity + (xAcceleration * timeSteps);
+                double yVelFinal = yInitVelocity + (yAcceleration * timeSteps);
+                Velocity newVel = new Velocity(xVelFinal, yVelFinal);
+
+                // This is just so we don't update the velocity when checking the next position in the collision detection
+                // We only want to do this when we are moving the objects, in the below function.
+                if (velocity) {
+                    obj.setVelocity(newVel);
+                }
+
+                return new Location(xFinalPos, yFinalPos);
+            }
+            else{
+                return orbitalCalculation(obj, velocity);
+            }
+        }
+
+        public double orbitalGCalculator(double mass, double distance){
+            double GConst = 6.67;
+            return ((GConst * mass)/(Math.pow(distance, 2)));
+
+        }
+
+        public Location orbitalCalculation(Object obj , boolean velocity){
+            double xInitPos = obj.getLocation().getX();
+            double yInitPos = obj.getLocation().getY();
+
+            double xInitVelocity = obj.getVelocity().getX();
+            double yInitVelocity = obj.getVelocity().getY();
+//
+//            if (velocity) {
+//                logger.info("Object " + obj);
+//                logger.info("Velocity X: " + xInitVelocity);
+//                logger.info("Velocity Y: " + yInitVelocity);
+//            }
+
             double xAcceleration = 0;
-            double yAcceleration = -env.getGravity();
+            double yAcceleration = 0;
+
+            for (Object obj2: env.getObjects()){
+                if (obj2 != obj) {
+                    double dx = obj.getLocation().getX() - obj2.getLocation().getX();
+                    double dy = obj.getLocation().getY() - obj2.getLocation().getY();
+                    double distance = Math.sqrt(dx * dx + dy * dy);
+
+                    double orbitalAcc = orbitalGCalculator(obj2.getMass(), distance);
+
+                    double angle = Math.atan((dy / dx));
+
+                    double dxAcceleration = (orbitalAcc) * (Math.cos(angle));
+                    double dyAcceleration = (orbitalAcc) * (Math.sin(angle));
+//                    if(velocity){
+//                        logger.info("Objects being compared too: " + obj + ": " + obj2);
+//                        logger.info("distance" + distance);
+//                        logger.info("orbitalAcc: " + orbitalAcc);
+//                        logger.info("angle: " + angle);
+//
+//                    }
+
+                    if(obj.getLocation().getX() > obj2.getLocation().getX()){
+                        dxAcceleration = -dxAcceleration;
+                    }else{
+                        dxAcceleration = Math.abs(dxAcceleration);
+                    }
+
+                    if(obj.getLocation().getY() > obj2.getLocation().getY()){
+                        dyAcceleration = -dyAcceleration;
+                    }else{
+                        dyAcceleration = Math.abs(dyAcceleration);
+                    }
+//
+//                    if (velocity){
+//                        logger.info("dxAcceleration: " + dxAcceleration);
+//                        logger.info("dyAcceleration: " + dyAcceleration);
+//
+//                    }
+
+                    xAcceleration += dxAcceleration;
+                    yAcceleration += dyAcceleration;
+                }
+            }
 
             double xFinalPos = xInitPos + (xInitVelocity * timeSteps) + (0.5 * xAcceleration * pow(timeSteps, 2));
             double yFinalPos = yInitPos + (yInitVelocity * timeSteps) + (0.5 * yAcceleration * pow(timeSteps, 2));
@@ -469,16 +562,17 @@ public class Sim implements IObservable{
 //            }
             double xVelFinal = xInitVelocity + (xAcceleration * timeSteps);
             double yVelFinal = yInitVelocity + (yAcceleration * timeSteps);
-            Velocity newVel = new Velocity(xVelFinal,yVelFinal);
+            Velocity newVel = new Velocity(xVelFinal, yVelFinal);
 
             // This is just so we don't update the velocity when checking the next position in the collision detection
             // We only want to do this when we are moving the objects, in the below function.
-            if (velocity){
+            if (velocity) {
                 obj.setVelocity(newVel);
             }
-
             return new Location(xFinalPos, yFinalPos);
+
         }
+
 
         private void moveObjects(double timeStep) {
             for (int i = 0; i < env.getObjects().size(); i++)
@@ -486,6 +580,8 @@ public class Sim implements IObservable{
                 env.getObject(i).setLocation(nextLocation(env.getObject(i), true));
             }
         }
+
+
 
         public Builder setTimeSteps(double desiredRunTime) {
             timeSteps = desiredRunTime;
@@ -504,6 +600,11 @@ public class Sim implements IObservable{
 
         public Builder setDamper(double damper){
             this.damper = damper;
+            return this;
+        }
+
+        public Builder setOrbital(boolean orbit){
+            isOrbital = orbit;
             return this;
         }
 

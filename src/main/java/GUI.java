@@ -83,33 +83,6 @@ public class GUI extends JFrame {
         circlePanel.repaint();
     }
 
-    public static void main(String[] args) throws InterruptedException {
-
-        int height = 40;
-        int width = 50;
-
-        double mass1 = 1; // kg
-        Location location1 = new Location(20, -20); // meters
-        Velocity velocity1 = new Velocity(0, 0);
-
-        Object objOne = Object.newBuilder()
-                .radius(2)
-                .mass(mass1)
-                .velocity(velocity1)
-                .location(location1)
-                .color(Color.RED)
-                .create();
-
-        Sim runSim = Sim.newBuilder()
-                .createAndAddMars(height, width,1)
-                .addObjects(objOne)
-                .setTimeSteps(0.0001)
-                .setDuration(20)
-                .setDamper(0.8)
-                .run()
-                .executeGUI();
-    }
-
     public CirclePanel getCirclePanel() {
         return circlePanel;
     }

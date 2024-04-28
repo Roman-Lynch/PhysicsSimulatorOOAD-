@@ -376,8 +376,8 @@ public class Sim implements IObservable{
 
             }
             else {
-                double vel1xf = (((mass1*vel1x)+(mass2*vel2x))/(mass1+mass2));
-                double vel1yf = (((mass1*vel1y)+(mass2*vel2y))/(mass1+mass2));
+                double vel1xf = (((mass1 * vel1x) + (mass2 * vel2x)) / (mass1 + mass2));
+                double vel1yf = (((mass1 * vel1y) + (mass2 * vel2y)) / (mass1 + mass2));
 
                 sim.collisionDetect = true;
 
@@ -387,28 +387,39 @@ public class Sim implements IObservable{
                 obj1.setVelocity(new Velocity(vel1xf, vel1yf));
                 obj2.setVelocity(new Velocity(vel1xf, vel1yf));
 
-                obj1.setMass((mass1+mass2));
-                obj2.setMass((mass1+mass2));
-
                 obj1.addStuckObject(obj2);
                 obj2.addStuckObject(obj1);
 
+                double combinedMass = obj1.getMass() + obj2.getMass();
+                Velocity combinedVelocity = new Velocity(vel1xf, vel1yf); // Assuming you calculated this already
 
+                obj1.setMass(combinedMass);
+                obj2.setMass(combinedMass);
+                obj1.setVelocity(combinedVelocity);
+                obj2.setVelocity(combinedVelocity);
 
-                for (Object stuckObject : obj2.getStuckObjects()) {
-                    obj1.addStuckObject(stuckObject);
+                List<Object> combinedStuckObjects = new ArrayList<>(obj1.getStuckObjects());
+                combinedStuckObjects.addAll(obj2.getStuckObjects());
+
+                Set<Object> uniqueStuckObjects = new HashSet<>(combinedStuckObjects);
+                uniqueStuckObjects.add(obj1);
+                uniqueStuckObjects.add(obj2);
+
+                for (Object newObject : uniqueStuckObjects) {
+                    newObject.setMass(combinedMass);
+                    newObject.setVelocity(combinedVelocity);
+                    for (Object obj3 : uniqueStuckObjects) {
+                        if (obj3 != newObject) {
+                            newObject.addStuckObject(obj3);
+                        }
+                    }
                 }
 
-                for (Object stuckObject : obj1.getStuckObjects()) {
-                    obj2.addStuckObject(stuckObject);
-                }
-
-                for (Object stuckObject : obj1.getStuckObjects()) {
-                    stuckObject.setMass(obj1.getMass());
-                    stuckObject.setVelocity(obj1.getVelocity());
-                }
+//                logger.info(obj1 + " has list: " + obj1.getStuckObjects());
+//                for (Object object : obj1.getStuckObjects()) {
+//                    logger.info(object + " has list: " + object.getStuckObjects());
+//                }
             }
-
 //            logger.info("obj1 Velocity x: " + obj1.getVelocity().getX());
 //            logger.info("obj2 Velocity x: " + obj2.getVelocity().getX());
         }

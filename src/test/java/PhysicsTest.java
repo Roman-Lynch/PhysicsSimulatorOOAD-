@@ -132,6 +132,76 @@ public class PhysicsTest
     }
 
     @Test
+    public void InelasticTest()
+    {
+        int height = 75;
+        int width = 125;
+
+        double mass1 = 1; // kg
+        Location location1 = new Location(10, -10); // meters
+        Velocity velocity1 = new Velocity(1, 0);
+
+        double mass2 = 2; // kg
+        Location location2 = new Location(16, -10);
+        Velocity velocity2 = new Velocity(-1, 0);
+
+        double mass3 = 2; // kg
+        Location location3 = new Location(70, -10);
+        Velocity velocity3 = new Velocity(-8, 0);
+
+        double mass4 = 2; // kg
+        Location location4 = new Location(50, -10);
+        Velocity velocity4 = new Velocity(-10, 0);
+
+        Object objOne = Object.newBuilder()
+                .radius(2)
+                .mass(mass1)
+                .velocity(velocity1)
+                .location(location1)
+                .color(Color.RED)
+                .create();
+
+        Object objTwo = Object.newBuilder()
+                .radius(2)
+                .mass(mass2)
+                .velocity(velocity2)
+                .location(location2)
+                .color(Color.BLUE)
+                .create();
+
+
+        Object objThree = Object.newBuilder()
+                .radius(2)
+                .mass(mass3)
+                .velocity(velocity3)
+                .location(location3)
+                .color(Color.green)
+                .create();
+
+
+        Object objFour = Object.newBuilder()
+                .radius(2)
+                .mass(mass4)
+                .velocity(velocity4)
+                .location(location4)
+                .color(Color.pink)
+                .create();
+
+        Sim runSim = Sim.newBuilder()
+                .createAndAddMoon(height, width,1)
+                .addObjects(objOne)
+                .addObjects(objTwo)
+                .addObjects(objThree)
+                .addObjects(objFour)
+                .setTimeSteps(0.0001)
+                .setDuration(30)
+                .run()
+                .executeGUI();
+
+//        assert(runSim.collisionDetected() == true);
+    }
+
+    @Test
     public void TestEarthGravity()
     {
         int height = 20;

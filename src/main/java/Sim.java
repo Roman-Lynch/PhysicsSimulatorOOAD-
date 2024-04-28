@@ -47,6 +47,7 @@ public class Sim implements IObservable{
     public static class Builder {
         private ArrayList<Location> positions = new ArrayList<Location>();
         private ArrayList<Velocity> objectVelocities = new ArrayList<Velocity>();
+        private ArrayList<Boolean> messages = new ArrayList<Boolean>();
         public EnvironmentFactory eFactory = new EnvironmentFactory();
         private Sim sim = new Sim();
 
@@ -251,6 +252,9 @@ public class Sim implements IObservable{
                     if(sim.collisionDetected()){
                         logger.info("A collision has occurred!");
                         sim.collisionDetect = false;
+                        messages.add(true);
+                    } else {
+                        messages.add(false);
                     }
                     displayObjects();
 
@@ -260,7 +264,7 @@ public class Sim implements IObservable{
         }
 
         public Sim executeGUI() {
-            GUI gui = new GUI(env, positions, objectVelocities, (long)timeSteps, duration, showVel);
+            GUI gui = new GUI(env, positions, messages, objectVelocities, (long)timeSteps, duration, showVel);
             return sim;
         }
 

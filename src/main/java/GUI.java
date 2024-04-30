@@ -6,18 +6,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.text.DecimalFormat;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements IObservable{
     private CirclePanel circlePanel;
     private ArrayList<Circle> circles;
     JFrame frame = new JFrame();
-
-    AudibleObserver observer = new AudibleObserver(null, List.of(EventType.COLLISION), 0);
+    AudibleObserver observer = new AudibleObserver(null, null, 0);
 
     public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity, Boolean speak) {
         // Add 5 seconds to the duration
         duration += 5;
         circles = new ArrayList<>();
-
+        EventBus.getInstance().attach(observer,EventType.COLLISION);
         // Find number of objects in environment
         int numObs = enviro.getObjects().size();
         // Put objects with initial positions in
@@ -58,7 +57,7 @@ public class GUI extends JFrame {
             }
 
             if (CollisionCheck.get(i) && speak) {
-                observer.update(EventType.COLLISION, "BONK");
+                EventBus.getInstance().postMessage(EventType.COLLISION, "BONK");
             }
 
             for (int steps = 0; steps < 100; steps ++) {
@@ -85,6 +84,13 @@ public class GUI extends JFrame {
 
     public CirclePanel getCirclePanel() {
         return circlePanel;
+    }
+
+    @Override
+    public void subscribe(IObserver observer, List<EventType> interestedEvents) {
+        for (EventType event : interestedEvents) {
+            EventBus.getInstance().attach(observer, event);
+        }
     }
 }
 

@@ -7,13 +7,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PhysicsTest
 {
+    // Given a single object
+    // The object should spawn in without any errors.
     @Test
     public void TestValidObj()
     {
         double height = 5;
         double width = 5;
         double mass = 100; // kg
-        Location location = new Location(0, 0); // meters
+        Location location = new Location(10, -10); // meters
         Velocity velocity = new Velocity(1000, 0);
 
         Object obj = Object.newBuilder()
@@ -27,6 +29,13 @@ public class PhysicsTest
         assertTrue(obj.isValidObj());
     }
 
+    // Given a single object
+    // The object should spawn in without any errors.
+    // Through a visual check, it should also be verified that the object
+    // has the correct size, location, and velocity and accelerates downwards
+    // The object should collide with the bottom border
+    // When the object collides with the bottom border,
+    // The object should rebound back upwards without losing any energy
     @Test
     public void BottomBorderTest()
     {
@@ -59,6 +68,13 @@ public class PhysicsTest
         assert(Math.round(objOne.getLocation().getY())== -21.0);
     }
 
+    // Given a single object
+    // The object should spawn in without any errors.
+    // Through a visual check, it should also be verified that the object
+    // has the correct size, location, and velocity and accelerates downwards
+    // The object should collide with the left border
+    // When the object collides with the left border,
+    // The object should rebound back upwards without losing any energy
     @Test
     public void LeftWallBorderTest()
     {
@@ -83,7 +99,7 @@ public class PhysicsTest
                 .setTimeSteps(0.0001)
                 .setDuration(7)
                 .showVelocityInGUI(false)
-                .speak(false)
+                .speak(true)
                 .run()
                 .executeGUI();
 
@@ -91,8 +107,12 @@ public class PhysicsTest
         assert(Math.round(objOne.getLocation().getY())== -21.0);
     }
 
-
-
+    // Given two object and an environment
+    // The objects should spawn in without any errors.
+    // Through a visual check, it should also be verified that the objects
+    // have the correct initial size, location, and velocity
+    // The objects should collide
+    // When the objects collide, their x velocity's should swap directions
     @Test
     public void TestSim()
     {
@@ -100,11 +120,11 @@ public class PhysicsTest
         int width = 50;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(10, -10); // meters
+        Location location1 = new Location(11, -10); // meters
         Velocity velocity1 = new Velocity(1, 0);
 
-        double mass2 = 2; // kg
-        Location location2 = new Location(16, -10);
+        double mass2 = 1; // kg
+        Location location2 = new Location(18, -10);
         Velocity velocity2 = new Velocity(-1, 0);
 
         Object objOne = Object.newBuilder()
@@ -128,16 +148,22 @@ public class PhysicsTest
                 .addObjects(objOne)
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
-                .setDuration(20)
-                .showVelocityInGUI(true)
+                .setDuration(5)
+                .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-//        assert(runSim.collisionDetected() == true);
+        assert(objOne.getVelocity().getX() == - velocity1.getX() && objTwo.getVelocity().getX() == - velocity2.getX());
     }
 
+    // Given multiple object and an environment
+    // The objects should spawn in without any errors.
+    // Through a visual check, it should also be verified that the objects
+    // have the correct initial size, location, and velocity
+    // The objects should collide
+    // When the objects collide, they should collide and rebound with varying velocities
     @Test
-    public void InelasticTest()
+    public void elasticTest()
     {
         int height = 75;
         int width = 125;
@@ -204,7 +230,7 @@ public class PhysicsTest
                 .run()
                 .executeGUI();
 
-//        assert(runSim.collisionDetected() == true);
+        assert(objOne.getVelocity().getX() != velocity1.getX() && objTwo.getVelocity().getX() != velocity2.getX() && objThree.getVelocity().getX() != velocity3.getX() && objFour.getVelocity().getX() != velocity4.getX());
     }
 
     @Test

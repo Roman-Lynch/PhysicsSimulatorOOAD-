@@ -10,9 +10,9 @@ public class GUI extends JFrame implements IObservable{
     private CirclePanel circlePanel;
     private ArrayList<Circle> circles;
     JFrame frame = new JFrame();
-    AudibleObserver observer = new AudibleObserver(null, null, 0);
 
-    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity, Boolean speak) {
+    public GUI(Environment enviro, ArrayList<Location> objectPositions, ArrayList<Boolean> CollisionCheck, ArrayList<Velocity> objectVelocities, double timeDelay, double duration, Boolean showVelocity, Boolean speak, List<EventType> interestingEvents) {
+        AudibleObserver observer = new AudibleObserver(null, interestingEvents, 0);
         // Add 5 seconds to the duration
         duration += 5;
         circles = new ArrayList<>();

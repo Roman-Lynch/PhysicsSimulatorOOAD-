@@ -281,7 +281,9 @@ public class Sim implements IObservable{
         }
 
         public Sim executeGUI() {
-            GUI gui = new GUI(env, positions, messages, objectVelocities, (long)timeSteps, duration, showVel, speakVar);
+            List<EventType> interestingEvents = new ArrayList<>();
+            interestingEvents.add(EventType.COLLISION);
+            GUI gui = new GUI(env, positions, messages, objectVelocities, (long)timeSteps, duration, showVel, speakVar, interestingEvents);
             return sim;
         }
 

@@ -17,27 +17,27 @@ public class Sim implements IObservable{
     }
 
     public void display(Environment env, int x, int y){
-        for(int i = 0; i > -(x); i--) {
-            StringBuilder row = new StringBuilder();
-            for (int j = 0; j < y; j++) {
-                boolean found = false;
-                for (int k = 0; k < env.getObjects().size(); k++) {
-                    int objectX = (int) Math.round(env.getObject(k).getLocation().getX());
-                    int objectY = (int) Math.round(env.getObject(k).getLocation().getY());
-                    double distance = Math.sqrt(Math.pow(objectX - j, 2) + Math.pow(objectY - i, 2));
-                    if (distance <= env.getObject(k).getRadius()) {
-                        found = true;
-                        break;
-                    }
-                }
-                if (found) {
-                    row.append(" O ");
-                } else {
-                    row.append(" + ");
-                }
-            }
-            logger.info(row.toString());
-        }
+//        for(int i = 0; i > -(x); i--) {
+//            StringBuilder row = new StringBuilder();
+//            for (int j = 0; j < y; j++) {
+//                boolean found = false;
+//                for (int k = 0; k < env.getObjects().size(); k++) {
+//                    int objectX = (int) Math.round(env.getObject(k).getLocation().getX());
+//                    int objectY = (int) Math.round(env.getObject(k).getLocation().getY());
+//                    double distance = Math.sqrt(Math.pow(objectX - j, 2) + Math.pow(objectY - i, 2));
+//                    if (distance <= env.getObject(k).getRadius()) {
+//                        found = true;
+//                        break;
+//                    }
+//                }
+//                if (found) {
+//                    row.append(" O ");
+//                } else {
+//                    row.append(" + ");
+//                }
+//            }
+//            logger.info(row.toString());
+//        }
     }
 
     public static Builder newBuilder() {
@@ -460,7 +460,6 @@ public class Sim implements IObservable{
         private void handleWallCollision(Object obj, Environment envior) {
             //logger.info("obj1 Velocity x: " + obj.getVelocity().getX());
             //logger.info("obj Velocity y: " + obj.getVelocity().getY());
-            logger.info("Specifcally a wall one.");
             double velObjX = obj.getVelocity().getX();
             double velObjY = obj.getVelocity().getY();
 

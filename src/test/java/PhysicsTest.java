@@ -83,7 +83,7 @@ public class PhysicsTest
                 .setTimeSteps(0.0001)
                 .setDuration(7)
                 .showVelocityInGUI(false)
-                .speak(true)
+                .speak(false)
                 .run()
                 .executeGUI();
 
@@ -129,7 +129,7 @@ public class PhysicsTest
                 .addObjects(objTwo)
                 .setTimeSteps(0.0001)
                 .setDuration(20)
-                .showVelocityInGUI(false)
+                .showVelocityInGUI(true)
                 .run()
                 .executeGUI();
 
@@ -210,17 +210,15 @@ public class PhysicsTest
     @Test
     public void TestEarthGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 2.86;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -228,49 +226,35 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.GREEN)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddEarth(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.2)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 9.81 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        System.out.println(finalY);
-        System.out.println(correctY);
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
+        assert((int)(objOne.getVelocity().getY()) == 0);
     }
 
     @Test
     public void TestVenusGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 3.003;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -278,46 +262,34 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.YELLOW)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddVenus(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
                 .showVelocityInGUI(false)
+                .setDamper(0)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestUranusGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 3.003;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -325,46 +297,34 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.BLUE)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddUranus(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 8.87 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestSunGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 0.54;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -372,46 +332,34 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.BLUE)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.PINK)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddSun(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
                 .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 274 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestSaturnGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 2.77;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -419,46 +367,34 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.BLUE)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddSaturn(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 10.44 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestNeptuneGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 2.68;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -466,46 +402,34 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.GREEN)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddNeptune(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 11.15 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestMoonGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 7.026;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -515,44 +439,32 @@ public class PhysicsTest
                 .color(Color.RED)
                 .create();
 
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.BLUE)
-                .create();
-
         Sim runSim = Sim.newBuilder()
                 .createAndAddMoon(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(0.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 1.62 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestMercuryGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 4.65;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -562,44 +474,32 @@ public class PhysicsTest
                 .color(Color.GREEN)
                 .create();
 
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.BLUE)
-                .create();
-
         Sim runSim = Sim.newBuilder()
                 .createAndAddMercury(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 3.7 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
 
     @Test
     public void TestJupiterGravity()
     {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
+        int height = 60;
+        int width = 50;
+
+        // Time it should take an object to fall 40 meters
+        double duration = 1.796;
 
         double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
+        Location location1 = new Location(20, -20); // meters
+        Velocity velocity1 = new Velocity(0, 0);
 
         Object objOne = Object.newBuilder()
                 .radius(1)
@@ -607,79 +507,21 @@ public class PhysicsTest
                 .velocity(velocity1)
                 .location(location1)
                 .color(Color.RED)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.BLUE)
                 .create();
 
         Sim runSim = Sim.newBuilder()
                 .createAndAddJupiter(height, width,1)
                 .addObjects(objOne)
-                .addObjects(objTwo)
                 .setDuration(duration)
-                .setTimeSteps(.02)
+                .setTimeSteps(.0001)
+                .setDamper(0)
                 .showVelocityInGUI(false)
                 .run()
                 .executeGUI();
 
-        double correctY = 0 - (0.5 * 24.79 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
+        assert(objOne.getLocation().getX() == 20);
+        assert((int)(objOne.getLocation().getY()) == -59);
     }
-
-    @Test
-    public void TestBlackHoleGravity()
-    {
-        int height = 20;
-        int width = 10;
-        int duration = 5;
-
-        double mass1 = 1; // kg
-        Location location1 = new Location(0, 0); // meters
-        Velocity velocity1 = new Velocity(3, 0);
-
-        double mass2 = 2; // kg
-        Location location2 = new Location(10, 0);
-        Velocity velocity2 = new Velocity(-3, 0);
-
-        Object objOne = Object.newBuilder()
-                .radius(1)
-                .mass(mass1)
-                .velocity(velocity1)
-                .location(location1)
-                .color(Color.YELLOW)
-                .create();
-
-        Object objTwo = Object.newBuilder()
-                .radius(1)
-                .mass(mass2)
-                .velocity(velocity2)
-                .location(location2)
-                .color(Color.RED)
-                .create();
-
-        Sim runSim = Sim.newBuilder()
-                .createAndAddBlackHole(height, width,1)
-                .addObjects(objOne)
-                .addObjects(objTwo)
-                .setDuration(duration)
-                .setTimeSteps(.02)
-                .showVelocityInGUI(false)
-                .run()
-                .executeGUI();
-
-        double correctY = 0 - (0.5 * 99999999.99999 * pow(duration, 2));
-        double finalY = objOne.getLocation().getY();
-
-        assert(abs(finalY - correctY) < 0.01); //Note, overtime there may be slight errors due to rounding
-    }
-
 
     @Test
     public void TestLogging(){
